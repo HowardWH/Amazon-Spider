@@ -1,11 +1,13 @@
+# Full Automatic Amazon Distributed crawler|spider (USA, Japan, Germany and UK)
 # Golang全自动亚马逊全网分布式爬虫（美国，日本，德国和英国）
 
 ## 2017.04.06
 
-爬虫包升级， 亚马逊爬虫仍然能跑！！！依赖[https://www.github.com/hunterhug/GoSpider](https://www.github.com/hunterhug/GoSpider)
+爬虫包升级，亚马逊爬虫仍然能跑！！！Core Package Depend On [https://www.github.com/hunterhug/GoSpider](https://www.github.com/hunterhug/GoSpider)
 
-网站端见：Web is GoAmazonWeb See [https://github.com/hunterhug/AmazonBigSpiderWeb](https://github.com/hunterhug/AmazonBigSpiderWeb)
+Dashboard You can See：[https://github.com/hunterhug/AmazonBigSpiderWeb](https://github.com/hunterhug/AmazonBigSpiderWeb)
 
+Env Config See [http://www.lenggirl.com/tool/centos7.html](http://www.lenggirl.com/tool/centos7.html)
 
 英文已经凌乱，仔细阅读，有益身心，中文见[中文版说明](china.md)
 

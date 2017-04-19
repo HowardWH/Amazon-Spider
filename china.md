@@ -1,12 +1,16 @@
 # 中文介绍
 
-?Golang全自动亚马逊全网分布式爬虫（美国，日本，德国和英国）
+Golang全自动亚马逊全网分布式爬虫（美国，日本，德国和英国）
+
+架设八台代理服务器和三台爬虫服务器（美国机房），构建代理IP服务池模块和多爬虫切换模块，配合redis和mysql进行分布式高并发抓取日本/英国/美国/德国亚马逊商品数据，实现IP重蹈，爬虫监控，数据库主从到阿里云（读写分离）等功能，还配套Dashboard后台，方便筛选商品、下载excel和查看商品历史排名/价格等轨迹。爬虫crontab定时夜间开爬，代理IP自动循环导入。爬虫高度自动化，运维成本较低，每天有几百万数据产生。核心爬虫库抽离并开源！
 
 ## 2017.04.06
 
-爬虫包升级， 亚马逊爬虫仍然能跑！！！依赖[https://www.github.com/hunterhug/GoSpider](https://www.github.com/hunterhug/GoSpider)
+爬虫包升级，亚马逊爬虫仍然能跑！！！依赖[https://www.github.com/hunterhug/GoSpider](https://www.github.com/hunterhug/GoSpider)
 
 网站端见：Web is GoAmazonWeb See [https://github.com/hunterhug/AmazonBigSpiderWeb](https://github.com/hunterhug/AmazonBigSpiderWeb)
+
+环境配置，代理服务器配置，裸Centos7配置，查看：[http://www.lenggirl.com/tool/centos7.html](http://www.lenggirl.com/tool/centos7.html)
 
 文件目录
 
