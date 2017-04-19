@@ -1,5 +1,6 @@
-# Full Automatic Amazon Distributed crawler|spider (USA, Japan, Germany and UK)
-# Golang全自动亚马逊全网分布式爬虫（美国，日本，德国和英国）
+Full Automatic Amazon Distributed crawler|spider (USA, Japan, Germany and UK)
+
+Golang全自动亚马逊全网分布式爬虫（美国，日本，德国和英国）
 
 ## 2017.04.06
 

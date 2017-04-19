@@ -8,7 +8,7 @@ Golang全自动亚马逊全网分布式爬虫（美国，日本，德国和英国）
 
 爬虫包升级，亚马逊爬虫仍然能跑！！！依赖[https://www.github.com/hunterhug/GoSpider](https://www.github.com/hunterhug/GoSpider)
 
-网站端见：Web is GoAmazonWeb See [https://github.com/hunterhug/AmazonBigSpiderWeb](https://github.com/hunterhug/AmazonBigSpiderWeb)
+网站端见：[https://github.com/hunterhug/AmazonBigSpiderWeb](https://github.com/hunterhug/AmazonBigSpiderWeb)
 
 环境配置，代理服务器配置，裸Centos7配置，查看：[http://www.lenggirl.com/tool/centos7.html](http://www.lenggirl.com/tool/centos7.html)
 
@@ -232,7 +232,7 @@ Linux定时器（helpspider.sh这些文件里面的路径要改，如果你的GOPATH不是/data/www/we
 http://blog.csdn.net/faye0412/article/details/6280761
 
 
-Master
+Master主服务器
 ```
 1.vim /etc/my.cnf
 
@@ -256,7 +256,7 @@ binlog-ignore-db=mysql
 6.unlock tables;
 ```
 
-Slave
+Slave阿里云从服务器
 
 ```
 1.vim /etc/my.cnf
