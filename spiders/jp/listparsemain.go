@@ -6,10 +6,10 @@ import (
 )
 
 func main() {
-	if dudu.Local {
-		core.InitConfig(dudu.Dir+"/config/jp_local_config.json", dudu.Dir+"/config/jp_log.json")
+	if AmazonBigSpider.Local {
+		core.InitConfig(AmazonBigSpider.Dir+"/config/jp_local_config.json", AmazonBigSpider.Dir+"/config/jp_log.json")
 	} else {
-		core.InitConfig(dudu.Dir+"/config/jp_config.json", dudu.Dir+"/config/jp_log.json")
+		core.InitConfig(AmazonBigSpider.Dir+"/config/jp_config.json", AmazonBigSpider.Dir+"/config/jp_log.json")
 	}
 	core.LocalListParseTask()
 

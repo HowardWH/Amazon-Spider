@@ -24,9 +24,9 @@ func init() {
 	//default:
 	//
 	//}
-	//if dudu.Local {
-	//	InitConfig(dudu.Dir+"/config/"+prefix+"_local_config.json", dudu.Dir+"/config/"+prefix+"_log.json")
+	//if AmazonBigSpider.Local {
+	//	InitConfig(AmazonBigSpider.Dir+"/config/"+prefix+"_local_config.json", AmazonBigSpider.Dir+"/config/"+prefix+"_log.json")
 	//} else {
-	//	InitConfig(dudu.Dir+"/config/"+prefix+"_config.json", dudu.Dir+"/config/"+prefix+"_log.json")
+	//	InitConfig(AmazonBigSpider.Dir+"/config/"+prefix+"_config.json", AmazonBigSpider.Dir+"/config/"+prefix+"_log.json")
 	//}
 }

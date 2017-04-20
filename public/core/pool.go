@@ -243,7 +243,7 @@ func IPPool() {
 		//panic("ip zero")
 	}
 	shuips := shuffleip(ips)
-	d, e := util.ReadfromFile(dudu.Dir + "/ip.txt")
+	d, e := util.ReadfromFile(AmazonBigSpider.Dir + "/ip.txt")
 	if e != nil {
 		fmt.Println("ip.txt problem" + e.Error())
 	} else {

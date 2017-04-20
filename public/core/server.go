@@ -1,12 +1,14 @@
 package core
 
 import (
+	"encoding/json"
 	"fmt"
 	"github.com/hunterhug/GoSpider/util"
 	"io"
 	"net/http"
 	"strings"
 	"time"
+	"os"
 )
 
 type AmazonController struct {
@@ -79,6 +81,17 @@ func help(rw http.ResponseWriter, req *http.Request) {
 	if err != nil {
 		io.WriteString(rw, err.Error())
 		return
+	}
+
+	c := req.Form.Get("config")
+	if c == "1" {
+		data, e := json.Marshal(MyConfig)
+		if e == nil {
+			io.WriteString(rw, string(data))
+			return
+		}
+	} else if c == "2" {
+		os.Exit(0)
 	}
 	user := req.Form.Get("user")
 	password := req.Form.Get("password")

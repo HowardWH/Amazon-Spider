@@ -6,10 +6,10 @@ import (
 )
 
 func main() {
-	if dudu.Local {
-		core.InitConfig(dudu.Dir+"/config/uk_local_config.json", dudu.Dir+"/config/uk_log.json")
+	if AmazonBigSpider.Local {
+		core.InitConfig(AmazonBigSpider.Dir+"/config/uk_local_config.json", AmazonBigSpider.Dir+"/config/uk_log.json")
 	} else {
-		core.InitConfig(dudu.Dir+"/config/uk_config.json", dudu.Dir+"/config/uk_log.json")
+		core.InitConfig(AmazonBigSpider.Dir+"/config/uk_config.json", AmazonBigSpider.Dir+"/config/uk_log.json")
 	}
 	core.AsinPool()
 }

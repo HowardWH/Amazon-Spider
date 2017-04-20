@@ -7,10 +7,10 @@ import (
 )
 
 func TestGetIP(t *testing.T) {
-	if dudu.Local {
-		InitConfig(dudu.Dir+"/config/usa_local_config.json", dudu.Dir+"/config/usa_log.json")
+	if AmazonBigSpider.Local {
+		InitConfig(AmazonBigSpider.Dir+"/config/usa_local_config.json", AmazonBigSpider.Dir+"/config/usa_log.json")
 	} else {
-		InitConfig(dudu.Dir+"/config/usa_config.json", dudu.Dir+"/config/usa_log.json")
+		InitConfig(AmazonBigSpider.Dir+"/config/usa_config.json", AmazonBigSpider.Dir+"/config/usa_log.json")
 	}
 	fmt.Printf("%#v", getips())
 }

@@ -16,10 +16,10 @@ var num int = 20
 var wait int = 0
 
 func main() {
-	if dudu.Local {
-		core.InitConfig(dudu.Dir+"/config/"+"de_local_config.json", dudu.Dir+"/config/"+"de_log.json")
+	if AmazonBigSpider.Local {
+		core.InitConfig(AmazonBigSpider.Dir+"/config/"+"de_local_config.json", AmazonBigSpider.Dir+"/config/"+"de_log.json")
 	} else {
-		core.InitConfig(dudu.Dir+"/config/"+"de_config.json", dudu.Dir+"/config/"+"de_log.json")
+		core.InitConfig(AmazonBigSpider.Dir+"/config/"+"de_config.json", AmazonBigSpider.Dir+"/config/"+"de_log.json")
 	}
 	//6级别
 	//26-28-14-4-10-0,https://www.amazon.co.jp/gp/bestsellers/books/3525971,ヴェルディ
