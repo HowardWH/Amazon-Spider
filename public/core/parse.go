@@ -3,10 +3,10 @@ package core
 import (
 	"errors"
 	"github.com/PuerkitoBio/goquery"
+	"github.com/hunterhug/GoSpider/query"
 	"github.com/hunterhug/GoSpider/util"
 	"regexp"
 	"strings"
-	"github.com/hunterhug/GoSpider/query"
 )
 
 func QueryBytes(content []byte) (*goquery.Document, error) {
@@ -391,6 +391,9 @@ func BigReallyName(name string) string {
 	}
 	r := strings.NewReplacer(patterns...)
 	dudu := strings.ToLower(r.Replace(bigname))
+	if strings.Contains(dudu, "cloth") {
+		return "Clothing"
+	}
 	switch dudu {
 	case "artscrafts":
 		bigname = "Arts Crafts & Sewing"
@@ -428,6 +431,8 @@ func BigReallyName(name string) string {
 		bigname = "Health & Personal Care"
 	case "industrial":
 		bigname = "Industrial & Scientific"
+	case strings.ToLower("ClothingShoesJewelry"):
+		bigname = "Clothing"
 	}
 	return bigname
 }

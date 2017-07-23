@@ -40,7 +40,8 @@ func (sb *_Spider) Delete(name string) {
 }
 func init() {
 	Ua[0] = "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.71 Safari/537.36"
-	temp, err := util.ReadfromFile(Dir + "/config/ua.txt")
+	utxt := Dir + "/config/ua.txt"
+	temp, err := util.ReadfromFile(utxt)
 	if err != nil {
 		panic(err.Error())
 	} else {

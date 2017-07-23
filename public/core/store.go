@@ -39,7 +39,8 @@ func InsertAsinMysql(items []map[string]string, createtime string, category stri
 		} else {
 			AmazonListLog.Debugf("20161111 Mysql:%s,%s", item["asin"], createtime)
 		}
-		goodinfo := fmt.Sprintf("%s|%s|%s|%s", item["img"], item["price"], item["score"], item["reviews"])
+		// 增加额外大名！
+		goodinfo := fmt.Sprintf("%s|%s|%s|%s|%s", item["img"], item["price"], item["score"], item["reviews"], item["bigname"])
 		if MyConfig.Extrafromredis {
 			RedisClient.Hset(MyConfig.Otherhashpool, item["asin"], goodinfo)
 		}
@@ -129,7 +130,7 @@ func InsertDetailMysql(item map[string]string) error {
 	if item["id"] == "" || item["id"] == "null" {
 		return nil
 	}
-	if item["bigname"] == "null" || item["bigname"] == "" {
+	if item["bigname"] == "null" || strings.TrimSpace(item["bigname"]) == "" {
 		item["bigname"] = "NULL"
 	}
 	rank, de := util.SI(item["rank"])
@@ -148,7 +149,7 @@ func InsertDetailMysql(item map[string]string) error {
 			extraerr = e
 		} else {
 			tempdudu := strings.Split(tempinfo, "|")
-			if len(tempdudu) != 4 {
+			if len(tempdudu) != 5 {
 				extraerr = errors.New("extra info redis error")
 			} else {
 				AmazonAsinLog.Debugf("Asin %s extrainfo:%s", item["id"], tempinfo)
@@ -157,6 +158,11 @@ func InsertDetailMysql(item map[string]string) error {
 				extrainfo["price"] = tempdudu[1]
 				extrainfo["score"] = tempdudu[2]
 				extrainfo["reviews"] = tempdudu[3]
+				extrainfo["bigname"] = tempdudu[4]
+				// 额外信息从这里拿
+				if item["bigname"] == "NULL" && strings.TrimSpace(extrainfo["bigname"]) != "" {
+					item["bigname"] = extrainfo["bigname"]
+				}
 			}
 		}
 	} else {
@@ -250,6 +256,6 @@ func hashcode(asin string) string {
 	for _, i := range dd {
 		sum = sum + int(i)
 	}
-	hashcode := sum % 501
+	hashcode := sum % (MyConfig.Hashnum + 1)
 	return util.IS(hashcode)
 }

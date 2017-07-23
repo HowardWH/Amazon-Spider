@@ -2,22 +2,23 @@ package core
 
 import (
 	"encoding/json"
+	"fmt"
 	"github.com/hunterhug/AmazonBigSpider/public/log"
+	"github.com/hunterhug/GoSpider/spider"
 	"github.com/hunterhug/GoSpider/store/myredis"
 	"github.com/hunterhug/GoSpider/store/mysql"
-	"github.com/hunterhug/GoSpider/spider"
 	"github.com/hunterhug/GoSpider/util"
 	"strings"
-	"fmt"
+	"github.com/hunterhug/AmazonBigSpider"
 )
 
 var (
-	Dir                                       string          = util.CurDir() // now root dir core
-	DataDir                                   string                          //global data dir, diff from Myconfig
-	RedisClient                               myredis.MyRedis                 // redis
-	BasicDb                                   mysql.Mysql                     // url db
-	DataDb                                    mysql.Mysql                     // data db
-	HashDb                                    mysql.Mysql
+	Dir                                       string           = AmazonBigSpider.CoreDir // now root dir core
+	DataDir                                   string                           //global data dir, diff from Myconfig
+	RedisClient                               *myredis.MyRedis                 // redis
+	BasicDb                                   *mysql.Mysql                     // url db
+	DataDb                                    *mysql.Mysql                     // data db
+	HashDb                                    *mysql.Mysql
 	MyConfig                                  Config // some config.json
 	AmazonListLog, AmazonAsinLog, AmazonIpLog *log.Logger
 	Today                                     string = util.TodayString(3) // Today
@@ -149,7 +150,7 @@ func InitConfig(cfpath string, logpath string) {
 	redisconfig := MyConfig.Redisconfig
 	redisclient, err := myredis.NewRedisPool(redisconfig, MyConfig.Redispoolsize)
 	if err != nil {
-		//panic("REDIS ERROR")
+		panic("REDIS ERROR" + err.Error())
 	}
 	RedisClient = redisclient
 
@@ -161,11 +162,11 @@ func InitConfig(cfpath string, logpath string) {
 
 func OpenMysql() {
 	fmt.Println("open basicdb")
-	BasicDb.Open(1000,0)
+	BasicDb.Open(1000, 0)
 	fmt.Println("open db")
-	DataDb.Open(1000,0)
+	DataDb.Open(1000, 0)
 	fmt.Println("open hashdb")
-	HashDb.Open(1000,0)
+	HashDb.Open(1000, 0)
 }
 
 func MapUrl(spidertype int) {

@@ -3,12 +3,13 @@ package core
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/hunterhug/GoSpider/spider"
 	"github.com/hunterhug/GoSpider/util"
 	"io"
 	"net/http"
+	"os"
 	"strings"
 	"time"
-	"os"
 )
 
 type AmazonController struct {
@@ -30,7 +31,7 @@ func (c *AmazonController) ServeHTTP(rw http.ResponseWriter, req *http.Request) 
 	<h1>%v</h1>
 	SpiderType:%s<br/>Message:%s<br/>Host:%s<br/><br/>
 	%s
-	<div style="float:left;width:70%";margin:40px>
+	<div style="float:left;width:70%%";margin:40px>
 	<div>
 	<h1>Export URLS AGAIN</h1>
 	<form action="/url" method="post">
@@ -95,7 +96,7 @@ func help(rw http.ResponseWriter, req *http.Request) {
 	}
 	user := req.Form.Get("user")
 	password := req.Form.Get("password")
-	if user == "smart" && password == "smart2016" {
+	if user == "jinhan" && password == "569929309" {
 		io.WriteString(rw, Sentiptoredis(IPPOOL))
 	} else {
 		io.WriteString(rw, "not allow!!")
@@ -110,7 +111,7 @@ func url(rw http.ResponseWriter, req *http.Request) {
 	}
 	user := req.Form.Get("user")
 	password := req.Form.Get("password")
-	if user == "smart" && password == "smart2016" {
+	if user == "jinhan" && password == "569929309" {
 		result, err := BasicDb.Select(MyConfig.Urlsql)
 		if err != nil {
 			io.WriteString(rw, err.Error())
@@ -133,6 +134,64 @@ func url(rw http.ResponseWriter, req *http.Request) {
 	}
 }
 
+type mixx struct {
+	Url    string  `json:"url"`
+	Result []mixxx `json:"result"`
+}
+type mixxx struct {
+	Ip   string `json:"ip:port"`   //"ip:port": "67.207.95.138:8080",
+	Type string `json:"http_type"` //"http_type": "HTTPS",
+	An   string `json:"anonymous"` //"anonymous": "高匿",
+	Isp  string `json:"isp"`       //"isp": "null",
+	C    string `json:"country"`   //"country": "美国"
+}
+
+// http://127.0.0.1:12345/mi?user=jinhan&password=569929309
+func mi(rw http.ResponseWriter, req *http.Request) {
+	err := req.ParseForm()
+	if err != nil {
+		io.WriteString(rw, err.Error())
+		return
+	}
+	user := req.Form.Get("user")
+	password := req.Form.Get("password")
+	orderid := req.Form.Get("orderid")
+	if user == "jinhan" && password == "569929309" {
+		if orderid == "" {
+			return
+		}
+		num, e := RedisClient.Llen(MyConfig.Proxypool)
+		if e == nil && num > 5 {
+			io.WriteString(rw, fmt.Sprintf("still has ip:%d", num))
+			return
+		}
+		url := "http://proxy.mimvp.com/api/fetch.php?orderid=%s&num=100&result_format=json&anonymous=5&result_fields=1,2,3,4,5&http_type=1,2"
+		sp := spider.NewAPI()
+		sp.Url = fmt.Sprintf(url, orderid)
+		data, err := sp.Get()
+		if err != nil {
+			io.WriteString(rw, err.Error())
+			return
+		}
+		r := new(mixx)
+		err = json.Unmarshal(data, r)
+		if err != nil {
+			io.WriteString(rw, err.Error())
+			return
+		}
+		if len(r.Result) == 0 {
+			io.WriteString(rw, "zero")
+			return
+		}
+		ipsmart2016 := []string{}
+		for _, i := range r.Result {
+			ipsmart2016 = append(ipsmart2016, i.Ip)
+		}
+		io.WriteString(rw, Sentiptoredis(ipsmart2016))
+	} else {
+		io.WriteString(rw, "not allow!!")
+	}
+}
 func diy(rw http.ResponseWriter, req *http.Request) {
 	err := req.ParseForm()
 	if err != nil {
@@ -141,7 +200,7 @@ func diy(rw http.ResponseWriter, req *http.Request) {
 	}
 	user := req.Form.Get("user")
 	password := req.Form.Get("password")
-	if user == "smart" && password == "smart2016" {
+	if user == "jinhan" && password == "569929309" {
 		ipsmart2016 := []string{}
 		ipstring := req.Form.Get("ips")
 		tempips := strings.Split(ipstring, "\n")
@@ -196,6 +255,8 @@ func ServePort(host string, ac *AmazonController) error {
 	http.HandleFunc("/help", help)
 	http.HandleFunc("/diy", diy)
 	http.HandleFunc("/url", url)
+	// http://proxy.mimvp.com/api/fetch.php?orderid=860170716115639588&num=100&result_format=json&anonymous=5&result_fields=1,2,3,4,5&http_type=1,2,5
+	http.HandleFunc("/mi", mi)
 	err := http.ListenAndServe(host, nil)
 	return err
 }

@@ -1,7 +1,7 @@
 {
   "Type": "USA",
   "Datadir": "/data/db/usa",
-  "Proxymaxtrytimes": 40,
+  "Proxymaxtrytimes": 10,
   "Rank": 80000,
   "Listtasknum": 30,
   "Asintasknum": 50,

@@ -4,33 +4,9 @@ Golang全自动亚马逊全网分布式爬虫（美国，日本，德国和英国）
 
 架设八台代理服务器和三台爬虫服务器（美国机房），构建代理IP服务池模块和多爬虫切换模块，配合redis和mysql进行分布式高并发抓取日本/英国/美国/德国亚马逊商品数据，实现IP重蹈，爬虫监控，数据库主从到阿里云（读写分离）等功能，还配套Dashboard后台，方便筛选商品、下载excel和查看商品历史排名/价格等轨迹。爬虫crontab定时夜间开爬，代理IP自动循环导入。爬虫高度自动化，运维成本较低，每天有几百万数据产生。核心爬虫库抽离并开源！
 
-## 2017.04.06
-
 爬虫包升级，亚马逊爬虫仍然能跑！！！依赖[https://www.github.com/hunterhug/GoSpider](https://www.github.com/hunterhug/GoSpider)
 
-网站端见：[https://github.com/hunterhug/AmazonBigSpiderWeb](https://github.com/hunterhug/AmazonBigSpiderWeb)
-
 环境配置，代理服务器配置，裸Centos7配置，查看：[http://www.lenggirl.com/tool/centos7.html](http://www.lenggirl.com/tool/centos7.html)
-
-文件目录
-
-```
---config
-    -- *_local_* 本地跑爬虫配置
-    -- ** 远程跑爬虫配置（在根目录放一个远程.txt文件即读取此配置）
---crontab  定时器与定时器脚本
---doc
-    --sql  类目URL数据，需要几个月跑一次tool文件夹python代码
---public
-    --core 爬虫核心包
---sh    运行脚本
---spiders 爬虫入口
---tool
-    --python 代理测试
-    --url  抓类目URL工具，需要手动几个月定时跑，防止类目失效，先抓取后解析塞入数据库，需运行后取消注释代码，再运行，再取消注释。。。
-```
-
-## 2016.12.10
 
 亚马逊爬虫支持
 
@@ -55,39 +31,6 @@ Golang全自动亚马逊全网分布式爬虫（美国，日本，德国和英国）
 1. 数据库初始化脚本优化
 2. IP配置文件优化
 3. 网络WEB端自定义IP
-
-# 中文使用
-
-安装Go环境，MYSQL和Redis
-
-一.Go安装
-
-Go包安装 https://yun.baidu.com/s/1jHKUGZG 选择1.6后缀msi安装
-
-环境变量设置，请根据定时器进行相应更改
-
-```
-Path G:\smartdogo\bin
-GOBIN G:\smartdogo\bin
-GOPATH G:\smartdogo
-GOROOT C:\Go\
-```
-
-然后
-
-```
-go get -u -v github.com/hunterhug/AmazonBigSpider
-```
-
-二. Mysql安装
-
-https://yun.baidu.com/s/1hrF0QC8 找到mysql文件夹，下面的5.6.17.0.msi根据说明安装。
-
-三.Redis安装
-
-https://yun.baidu.com/s/1jHKUGZG 选择redis64bit或32bit，解压 ，然后Shift+右键 在此次打开命令窗口 输入“redis-server.exe redis.conf ”，在redis.conf设置密码smart2016，可改，已经设置好
-
-四.修改配置文件
 
 可以修改GOPATH，即后缀为?_config.json的配置（默认不需要改，下面注释说明需要删除）
 
@@ -190,43 +133,6 @@ Windows方式：
 6. 点击asinmain.exe抓取详情页
 7. 如果配置中Asinautopool设置为false，那么需要自己导Asin进入Redis,运行asinpool.exe
 
-Linux定时器（helpspider.sh这些文件里面的路径要改，如果你的GOPATH不是/data/www/web/go）：
-
-```
-0 */2 * * * /sbin/ntpdate time.windows.com
-10 0 * * * killall go
-10 0 * * * ps -ef|grep /tmp/go-build |awk '{print $2}'|xargs -i kill {}
-20 0 * * * /data/app/redis-3.2.1/src/redis-cli -a smart2016 flushall
-0 2 * * * /data/www/web/go/src/github.com/hunterhug/AmazonBigSpider/crontab/usa/ip.sh  >> /data/www/web/go/src/github.com/hunterhug/AmazonBigSpider/haha.log 2>&1 &
-5 2 * * * /data/www/web/go/src/github.com/hunterhug/AmazonBigSpider/crontab/usa/urlpool.sh  >> /data/www/web/go/src/github.com/hunterhug/AmazonBigSpider/haha.log 2>&1 &
-10 2 * * * /data/www/web/go/src/github.com/hunterhug/AmazonBigSpider/crontab/usa/helpspider.sh  >> /data/www/web/go/src/github.com/hunterhug/AmazonBigSpider/haha.log 2>&1 &
-20 2 * * * /data/www/web/go/src/github.com/hunterhug/AmazonBigSpider/crontab/usa/asinspider.sh  >> /data/www/web/go/src/github.com/hunterhug/AmazonBigSpider/haha.log 2>&1 &
-0 2 * * * /data/www/web/go/src/github.com/hunterhug/AmazonBigSpider/crontab/jp/ip.sh  >> /data/www/web/go/src/github.com/hunterhug/AmazonBigSpider/haha.log 2>&1 &
-5 2 * * * /data/www/web/go/src/github.com/hunterhug/AmazonBigSpider/crontab/jp/urlpool.sh  >> /data/www/web/go/src/github.com/hunterhug/AmazonBigSpider/haha.log 2>&1 &
-10 2 * * * /data/www/web/go/src/github.com/hunterhug/AmazonBigSpider/crontab/jp/helpspider.sh  >> /data/www/web/go/src/github.com/hunterhug/AmazonBigSpider/haha.log 2>&1 &
-20 2 * * * /data/www/web/go/src/github.com/hunterhug/AmazonBigSpider/crontab/jp/asinspider.sh  >> /data/www/web/go/src/github.com/hunterhug/AmazonBigSpider/haha.log 2>&1 &
-0 2 * * * /data/www/web/go/src/github.com/hunterhug/AmazonBigSpider/crontab/de/ip.sh  >> /data/www/web/go/src/github.com/hunterhug/AmazonBigSpider/haha.log 2>&1 &
-5 2 * * * /data/www/web/go/src/github.com/hunterhug/AmazonBigSpider/crontab/de/urlpool.sh  >> /data/www/web/go/src/github.com/hunterhug/AmazonBigSpider/haha.log 2>&1 &
-10 2 * * * /data/www/web/go/src/github.com/hunterhug/AmazonBigSpider/crontab/de/helpspider.sh  >> /data/www/web/go/src/github.com/hunterhug/AmazonBigSpider/haha.log 2>&1 &
-20 2 * * * /data/www/web/go/src/github.com/hunterhug/AmazonBigSpider/crontab/de/asinspider.sh  >> /data/www/web/go/src/github.com/hunterhug/AmazonBigSpider/haha.log 2>&1 &
-0 2 * * * /data/www/web/go/src/github.com/hunterhug/AmazonBigSpider/crontab/uk/ip.sh  >> /data/www/web/go/src/github.com/hunterhug/AmazonBigSpider/haha.log 2>&1 &
-5 2 * * * /data/www/web/go/src/github.com/hunterhug/AmazonBigSpider/crontab/uk/urlpool.sh  >> /data/www/web/go/src/github.com/hunterhug/AmazonBigSpider/haha.log 2>&1 &
-10 2 * * * /data/www/web/go/src/github.com/hunterhug/AmazonBigSpider/crontab/uk/helpspider.sh  >> /data/www/web/go/src/github.com/hunterhug/AmazonBigSpider/haha.log 2>&1 &
-20 2 * * * /data/www/web/go/src/github.com/hunterhug/AmazonBigSpider/crontab/uk/asinspider.sh  >> /data/www/web/go/src/github.com/hunterhug/AmazonBigSpider/haha.log 2>&1 &
-```
-
-跑ip.sh 后可以打开127.0.0.1:12345浏览器查看美国爬虫监控，12346，12347，12348依次为日本，英国，德国（Maybe)
-
-![](doc/img/3.png)
-
-重蹈代理IP，账号和密码是smart，smart2016
-
-跑urlpool.sh可以导入需要抓取的类目URL
-
-跑helpspider.sh可以抓列表页
-
-跑asinspider.sh可以抓详情页
-
 ## MYSQL主从
 
 http://blog.csdn.net/faye0412/article/details/6280761
@@ -268,5 +174,3 @@ server-id=2
 4.start slave ;
 5.show slave status
 ```
-
-----

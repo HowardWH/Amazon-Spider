@@ -1,8 +1,8 @@
 {
   "Type": "UK",
   "Datadir": "/data/db/uk",
-  "Proxymaxtrytimes": 40,
-  "Rank": 80000,
+  "Proxymaxtrytimes": 10,
+  "Rank": 100000,
   "Listtasknum": 30,
   "Asintasknum": 30,
   "Localtasknum": 150,
@@ -27,10 +27,10 @@
   "Asinsql": "SELECT distinct asin as id FROM `{?}` order by bigname limit 1000000",
   "Spidersleeptime": 3,
   "Spidertimeout": 35,
-  "Spiderloglevel": "DEBUG",
+  "Spiderloglevel": "INFO",
   "Redisconfig": {
     "Host": "127.0.0.1:6379",
-    "Password": "smart2016",
+    "Password": "GoSpider",
     "DB": 0
   },
   "Redispoolsize": 100,
@@ -38,22 +38,22 @@
     "Ip": "127.0.0.1",
     "Port": "3306",
     "Username": "root",
-    "Password": "smart2016",
+    "Password": "569929309",
     "Dbname": "uk_smart_base"
   },
   "Hashdb": {
     "Ip": "127.0.0.1",
     "Port": "3306",
     "Username": "root",
-    "Password": "smart2016",
+    "Password": "569929309",
     "Dbname": "uk_smart_hash"
   },
-  "Hashnum": 500,
+  "Hashnum": 80,
   "Datadb": {
     "Ip": "127.0.0.1",
     "Port": "3306",
     "Username": "root",
-    "Password": "smart2016",
+    "Password": "569929309",
     "Dbname": "uk_smartdb"
   },
   "Ipuse": {

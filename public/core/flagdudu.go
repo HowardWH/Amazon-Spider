@@ -5,12 +5,14 @@ import (
 )
 
 var (
-	day      = flag.String("d", Today, "Date(such as 20161110)")
+	day = flag.String("d", Today, "Date(such as 20161110)")
 	//sitetype = flag.String("t", "usa", "Site Type(USA/JP/UK/DE)")
 )
 
 func init() {
-	flag.Parse()
+	if !flag.Parsed() {
+		flag.Parse()
+	}
 	//prefix := "usa"
 	//switch strings.ToLower(*sitetype) {
 	//case "uk":

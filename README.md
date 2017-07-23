@@ -1,18 +1,15 @@
 Full Automatic Amazon Distributed crawler|spider (USA, Japan, Germany and UK)
 
-Golang全自动亚马逊全网分布式爬虫（美国，日本，德国和英国）
+>The Instructions is out of date!
 
-## 2017.04.06
-
-爬虫包升级，亚马逊爬虫仍然能跑！！！Core Package Depend On [https://www.github.com/hunterhug/GoSpider](https://www.github.com/hunterhug/GoSpider)
-
-Dashboard You can See：[https://github.com/hunterhug/AmazonBigSpiderWeb](https://github.com/hunterhug/AmazonBigSpiderWeb)
+Core Package Depend On [https://www.github.com/hunterhug/GoSpider](https://www.github.com/hunterhug/GoSpider)
 
 Env Config See [http://www.lenggirl.com/tool/centos7.html](http://www.lenggirl.com/tool/centos7.html)
 
 英文已经凌乱，仔细阅读，有益身心，中文见[中文版说明](china.md)
 
 # Distributed GoAmazon Spider
+
 Ad API Go to [http://affiliate-program.amazon.com/](http://affiliate-program.amazon.com/)
 
 Web is GoAmazonWeb See [https://github.com/hunterhug/AmazonBigSpiderWeb](https://github.com/hunterhug/AmazonBigSpiderWeb)
@@ -52,7 +49,9 @@ Data we want:
 
 # How to use
 
-We need **Redis** and **Mysql** and some develop environment, Such as Proxy IP Machine. So can learn by [http://www.cjhug.me/code/centos7.html](http://www.cjhug.me/code/centos7.html)
+We need **Redis** and **Mysql** and some develop environment, Such as Proxy IP Machine.
+
+We make a docker env! See `sh/docker`
 
 Got it!
 
@@ -210,6 +209,13 @@ show variables like '%max_connections%';
 set global max_connections=2000
 ```
 
+you can just:
+
+```
+go run initsql.go
+source /data/www/web/go/src/github.com/hunterhug/AmazonBigSpider/doc/sql/uk_category.sql
+```
+
 ##  Anti robot
 
 ![](doc/img/robot.png)
@@ -240,8 +246,6 @@ following is the cost of time and store
 
 ## Question
 
-Another python version:https://github.com/skypika/smartdo, I suppose not to use!
-
 EveryQuestion you can Email me gdccmcm14@live.com or 569929309@qq.com to contact me, 
 
 # Design
@@ -250,15 +254,6 @@ EveryQuestion you can Email me gdccmcm14@live.com or 569929309@qq.com to contact
 
 
 ![](doc/img/2.jpg)
-
-
-# USE
-
-```
-go get -u -v github.com/hunterhug/AmazonBigSpider
-go run initsql.go
-source /data/www/web/go/src/github.com/hunterhug/AmazonBigSpider/doc/sql/uk_category.sql
-```
 
 # Result
 
