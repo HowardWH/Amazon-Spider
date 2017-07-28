@@ -2,11 +2,15 @@ Full Automatic Amazon Distributed crawler|spider (USA, Japan, Germany and UK)
 
 >The Instructions is out of date!
 
+这是BI 爬虫端
+
+英文已经凌乱，仔细阅读，有益身心，中文见[中文版说明](china.md)
+
+BI 网站端见： [https://github.com/hunterhug/AmazonBigSpiderWeb](https://github.com/hunterhug/AmazonBigSpiderWeb)
+
 Core Package Depend On [https://www.github.com/hunterhug/GoSpider](https://www.github.com/hunterhug/GoSpider)
 
 Env Config See [http://www.lenggirl.com/tool/centos7.html](http://www.lenggirl.com/tool/centos7.html)
-
-英文已经凌乱，仔细阅读，有益身心，中文见[中文版说明](china.md)
 
 # Distributed GoAmazon Spider
 
