@@ -4,9 +4,11 @@ Full Automatic Amazon Distributed crawler|spider (USA, Japan, Germany and UK)
 
 这是BI 爬虫端,BI 网站端见： [https://github.com/hunterhug/AmazonBigSpiderWeb](https://github.com/hunterhug/AmazonBigSpiderWeb)
 
-
 英文已经凌乱，仔细阅读，有益身心，[产品概况](https://github.com/hunterhug/GoSpider/blob/master/doc/amazon.md)，中文见[中文版说明](china.md)
 
+> 专业爬虫开发，企业网站开发， 比外包更实惠，可以联系QQ哦:459527502
+
+> 也接受软件开发培训教学哦：Python/Java/Golang/HTML/CSS/JS/计算机科普/数据库/运维/爬虫/云计算/技术面试传授/程序员心理辅导等，一线作战，讲课更深动，一对一教学， 从业丰富，技术精湛
 
 Core Package Depend On [https://www.github.com/hunterhug/GoSpider](https://www.github.com/hunterhug/GoSpider)
 
