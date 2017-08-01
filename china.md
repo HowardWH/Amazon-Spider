@@ -119,24 +119,7 @@ Golang全自动亚马逊全网分布式爬虫（美国，日本，德国和英国）
 }
 ```
 
-运行程序
-
-Windows方式：
-
-在spiders文件夹下,进去各个站点，运行go build *.go会得到exe文件
-
-1. 点击initsql.exe初始化数据库
-2. SQL文件导入数据库，列表URL
-3. 点击ippool.exe填充代理IP
-4. 点击urlpool.exe填充类目URL
-5. 点击listmain.exe抓取列表页
-6. 点击asinmain.exe抓取详情页
-7. 如果配置中Asinautopool设置为false，那么需要自己导Asin进入Redis,运行asinpool.exe
-
 ## MYSQL主从
-
-http://blog.csdn.net/faye0412/article/details/6280761
-
 
 Master主服务器
 ```
