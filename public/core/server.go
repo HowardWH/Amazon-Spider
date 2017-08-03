@@ -3,14 +3,14 @@
 	署名-非商业性使用-禁止演绎 4.0 国际
 	警告： 以下的代码版权归属hunterhug，请不要传播或修改代码
 	你可以在教育用途下使用该代码，但是禁止公司或个人用于商业用途(在未授权情况下不得用于盈利)
-	商业授权请联系邮箱：gdccmcm14@live.com QQ:569929309
+	商业授权请联系邮箱：gdccmcm14@live.com QQ:459527502
 
 	All right reserved
 	Attribution-NonCommercial-NoDerivatives 4.0 International
 	Notice: The following code's copyright by hunterhug, Please do not spread and modify.
 	You can use it for education only but can't make profits for any companies and individuals!
 	For more information on commercial licensing please contact hunterhug.
-	Ask for commercial licensing please contact Mail:gdccmcm14@live.com Or QQ:569929309
+	Ask for commercial licensing please contact Mail:gdccmcm14@live.com Or QQ:459527502
 
 	2017.7 by hunterhug
 */
@@ -112,7 +112,7 @@ func help(rw http.ResponseWriter, req *http.Request) {
 	}
 	user := req.Form.Get("user")
 	password := req.Form.Get("password")
-	if user == "jinhan" && password == "569929309" {
+	if user == "jinhan" && password == "459527502" {
 		io.WriteString(rw, Sentiptoredis(IPPOOL))
 	} else {
 		io.WriteString(rw, "not allow!!")
@@ -127,7 +127,7 @@ func url(rw http.ResponseWriter, req *http.Request) {
 	}
 	user := req.Form.Get("user")
 	password := req.Form.Get("password")
-	if user == "jinhan" && password == "569929309" {
+	if user == "jinhan" && password == "459527502" {
 		result, err := BasicDb.Select(MyConfig.Urlsql)
 		if err != nil {
 			io.WriteString(rw, err.Error())
@@ -162,7 +162,7 @@ type mixxx struct {
 	C    string `json:"country"`   //"country": "美国"
 }
 
-// http://127.0.0.1:12345/mi?user=jinhan&password=569929309
+// http://127.0.0.1:12345/mi?user=jinhan&password=459527502
 func mi(rw http.ResponseWriter, req *http.Request) {
 	err := req.ParseForm()
 	if err != nil {
@@ -172,7 +172,7 @@ func mi(rw http.ResponseWriter, req *http.Request) {
 	user := req.Form.Get("user")
 	password := req.Form.Get("password")
 	orderid := req.Form.Get("orderid")
-	if user == "jinhan" && password == "569929309" {
+	if user == "jinhan" && password == "459527502" {
 		if orderid == "" {
 			return
 		}
@@ -216,7 +216,7 @@ func diy(rw http.ResponseWriter, req *http.Request) {
 	}
 	user := req.Form.Get("user")
 	password := req.Form.Get("password")
-	if user == "jinhan" && password == "569929309" {
+	if user == "jinhan" && password == "459527502" {
 		ipsmart2016 := []string{}
 		ipstring := req.Form.Get("ips")
 		tempips := strings.Split(ipstring, "\n")
@@ -281,14 +281,14 @@ func ServePort(host string, ac *AmazonController) error {
 	署名-非商业性使用-禁止演绎 4.0 国际
 	警告： 以下的代码版权归属hunterhug，请不要传播或修改代码
 	你可以在教育用途下使用该代码，但是禁止公司或个人用于商业用途(在未授权情况下不得用于盈利)
-	商业授权请联系邮箱：gdccmcm14@live.com QQ:569929309
+	商业授权请联系邮箱：gdccmcm14@live.com QQ:459527502
 
 	All right reserved
 	Attribution-NonCommercial-NoDerivatives 4.0 International
 	Notice: The following code's copyright by hunterhug, Please do not spread and modify.
 	You can use it for education only but can't make profits for any companies and individuals!
 	For more information on commercial licensing please contact hunterhug.
-	Ask for commercial licensing please contact Mail:gdccmcm14@live.com Or QQ:569929309
+	Ask for commercial licensing please contact Mail:gdccmcm14@live.com Or QQ:459527502
 
 	2017.7 by hunterhug
 */

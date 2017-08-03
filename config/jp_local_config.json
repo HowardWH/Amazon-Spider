@@ -38,14 +38,14 @@
     "Ip": "127.0.0.1",
     "Port": "3306",
     "Username": "root",
-    "Password": "569929309",
+    "Password": "459527502",
     "Dbname": "jp_smart_base"
   },
   "Hashdb": {
     "Ip": "127.0.0.1",
     "Port": "3306",
     "Username": "root",
-    "Password": "569929309",
+    "Password": "459527502",
     "Dbname": "jp_smart_hash"
   },
   "Hashnum":80,
@@ -53,7 +53,7 @@
     "Ip": "127.0.0.1",
     "Port": "3306",
     "Username": "root",
-    "Password": "569929309",
+    "Password": "459527502",
     "Dbname": "jp_smartdb"
   },
   "Ipuse": {
