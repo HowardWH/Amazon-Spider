@@ -6,7 +6,12 @@
 [![Go Report Card](https://goreportcard.com/badge/github.com/hunterhug/AmazonBigSpider)](https://goreportcard.com/report/github.com/hunterhug/AmazonBigSpider)
 [![GitHub issues](https://img.shields.io/github/issues/hunterhug/AmazonBigSpider.svg)](https://github.com/hunterhug/AmazonBigSpider/issues)
 
-此项目为亚马逊电商带来了过多压力， 故开始闭源， 新的功能和修的新BUG将不再提交Github. 本人不承担该数据采集程序所带来的一切纠纷， 禁止任何机构及个人将此系统作为商业用途！ 
+此项目为亚马逊电商带来了过多压力，开始局部闭源，现在Github上的版本是v2.0，新的功能和修的新BUG将不再提交Github. 具体使用请查看PDF。
+
+本人不承担该数据采集程序所带来的一切纠纷， 禁止任何机构及个人将此系统作为商业用途！ 
+
+此项目使用的技术栈是云计算语言Golang和redis/mysql/docker等，由于部署需要相应的专业技能支持，有一定的技术壁垒，如何运行等细节相关问题请不要咨询。
+
 
 ## 一. 介绍
 
