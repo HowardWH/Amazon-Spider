@@ -1,399 +1,290 @@
-Full Automatic Amazon Distributed crawler|spider (USA, Japan, Germany and UK)
+# Full Automatic Amazon Distributed crawler|spider (USA, Japan, Germany and UK)
 
-因为这套产品包括爬虫端和网站端（可视化数据，筛选导出数据，结果见result结果文件夹），并且对技能要求较高，安装并稳定运行较复杂，可见[产品概况](https://github.com/hunterhug/GoSpider/blob/master/doc/amazon.md)，如果需要，请联系我QQ：459527502，可试用平台，如您的业务需要，可付费请我进行BI产品安装（价格实惠），非诚勿扰。
+[![GitHub forks](https://img.shields.io/github/forks/hunterhug/AmazonBigSpider.svg?style=social&label=Forks)](https://github.com/hunterhug/AmazonBigSpider/network)
+[![GitHub stars](https://img.shields.io/github/stars/hunterhug/AmazonBigSpider.svg?style=social&label=Stars)](https://github.com/hunterhug/AmazonBigSpider/stargazers)
+[![GitHub last commit](https://img.shields.io/github/last-commit/hunterhug/AmazonBigSpider.svg)](https://github.com/hunterhug/AmazonBigSpider)
+[![Go Report Card](https://goreportcard.com/badge/github.com/hunterhug/AmazonBigSpider)](https://goreportcard.com/report/github.com/hunterhug/AmazonBigSpider)
+[![GitHub issues](https://img.shields.io/github/issues/hunterhug/AmazonBigSpider.svg)](https://github.com/hunterhug/AmazonBigSpider/issues)
 
-这是BI 爬虫端,BI 网站端见： [https://github.com/hunterhug/AmazonBigSpiderWeb](https://github.com/hunterhug/AmazonBigSpiderWeb)
+此项目为亚马逊电商带来了过多压力， 故开始闭源， 新的功能和修的新BUG将不再提交Github. 本人不承担该数据采集程序所带来的一切纠纷， 禁止任何机构及个人将此系统作为商业用途！ 
 
-英文已经凌乱，仔细阅读，有益身心，中文见[中文版说明](china.md)
+## 一. 介绍
 
->The Instructions is out of date!
+### 1. 中文介绍
 
-Core Package Depend On [https://www.github.com/hunterhug/GoSpider](https://www.github.com/hunterhug/GoSpider)
+用途： 选款，特别适合亚马逊跨境电子商务运营公司(不支持中国亚马逊)
 
-Env Config See [http://www.lenggirl.com/tool/centos7.html](http://www.lenggirl.com/tool/centos7.html)
+核心竞争力： 四个国际站点：`美国/英国/日本/德国`，分布式，配套后台可视化
 
-# Distributed GoAmazon Spider
+原理： 首先通过获取亚马逊所有类目的URL，即从第一层大类，一直获取到第六层小类。通过这些类目URL可以依次抓取到这些类目某段时间的Top100的商品（类目下的爆款），这些Top100的商品排名我们称为小类排名，每个小时会变一次，但是由于变化基本不会太频繁以及抓取的商品数量很多，基本能覆盖。比如：有一个大类，下面有某一个三层类目，这个三层类目下面有几十个四层，四层下面又有五层，很多个Top100组在一起构成了三层我们需要的商品。通过这些小类商品数据，我们再进详情页获取更多的字段（评论数，星数，是否FBA，价格等），包括每件商品的最顶层排名，我们称大类排名。通过商品去重，分布式代理以及数据的一些预处理设计，加大马力，运用IT采集技术，我们能得到亚马逊大部分卖得好的商品，通过筛选，排序，我们可以从不同角度观察商品趋势。对于卖家来选款的话是极好的。
 
-Ad API Go to [http://affiliate-program.amazon.com/](http://affiliate-program.amazon.com/)
+关于选款： 亚马逊和国内天猫的差别在于店铺概念弱化，亚马逊以单品为为单位，基本一个ASIN就是一个商品类型，卖得好的商品很多人可以跟卖。不同的商家会有一样ASIN的商品，如果谁的商品好（省略...）。步骤一般是：通过该平台Web端查看某大类排名前一万名，进行一些筛选，比如价格在20刀的，FBA的商品，然后可以再点进去商品，看这件商品十几天的排名和价格变化等，然后我决定跟卖，先去阿里巴巴批发看看有没有这个东西，有！价格利润很多。好，我们卖！然后每天可以上来平台搜我们这件商品的ASIN，查看最近的变化。
 
-Web is GoAmazonWeb See [https://github.com/hunterhug/AmazonBigSpiderWeb](https://github.com/hunterhug/AmazonBigSpiderWeb)
+因为这套产品包括爬虫端和网站端（可视化数据，筛选导出数据，结果见result结果文件夹），并且对技能要求较高，安装并稳定运行较复杂，可见[产品概况](https://github.com/hunterhug/marmot/blob/master/doc/amazon.md)，彻底开源. 这是BI爬虫端, BI网站端见： [亚马逊四站BI产品网站端](https://github.com/hunterhug/AmazonBigSpiderWeb)
+
+英文已经凌乱，Old English Read this [OutOfDateYouShouldReferChinese](old-readme.md) 仔细阅读，有益身心.
+
+亚马逊爬虫支持
+
+1. 列表页和详情页可选择代理方式
+2. 多浏览器保存cookie机制
+3. 机器人检测达到阈值自动换代理
+4. 检测日期过期自动停止程序
+5. IP池扫描周期填充代理IP
+6. 支持分布式跨平台抓取
+7. 高并发进程设置抓取
+8. 默认网页爬取去重
+9. 日志记录功能
+10. 配套可视化网站，支持多角度查看数据，小类数据，大类数据，Asin数据和类目数据，支持查看每件Asin商品的历史记录，如排名，价格，打分，reviews变化。部分数据支持导出，且网站支持RBAC权限，可分配每部分数据的查看和使用权限。
+11. 网络端监控爬虫，可查看爬虫当前时段数据抓取状态，爬取的进度，IP的消耗程度。   **可支持网络端启动和停止爬虫，彻底成为Saas**（待做）
+12. 可自定义填入IP，如塞入其他代理IP网站API获取的IP
+13. 可选择HTML文件保存本地
+
+分布式，高并发，跨平台，多站点，多种自定义配置，极强的容错能力是这个爬虫的特点。机器数量和IP代理足够情况下，每天每个站点可满足抓取几百万的商品数据。
+
+### 2. 英语介绍
 
 Support UAS/Japan/Germany/UK, Amazing!
 
-1. USA done!
-2. Japan done！
-3. Germany done!
-4. UK done!
-
-And Japan will change some code, attention!
-
-## Introduction
-
-Catch the best seller items in Amazon USA! Using redis to store proxy ip and the category url. First fetch items list and then collect 
-many Asin, store in mysql. Items list catch just for the Asin, and we suggest one month or several weeks to fetch list page. We just need fetch the Asin
-detail page and everything we get!
+Catch the best seller items in Amazon USA! Using redis to store proxy ip and the category url. First fetch items list and then collect many Asin, store in mysql. Items list catch just for the Asin, and we suggest one month or several weeks to fetch list page. We just need fetch the Asin detail page and everything we get!
 
 We keep all Asin in one big table. And if catch detail 404, we set it as not valid. Also we can use API catch big rank but look not so good!
 
-So, there are two ways to get the big rank
+So, there are two ways to get the big rank：
 
-1.catch list page(not proxy), using API get the big rank
+1. catch list page(not proxy), using API get the big rank
 
-2.catch list page(not proxy), and then get asin detail page(proxy), API can not catch all the asin big rank so must use this!
+2. catch list page(not proxy), and then get asin detail page(proxy), API can not catch all the asin big rank so must use this!
 
 Due to we want list smallrank and the bigrank at the same time, but mysql update is so slow, we make two tables to save, one is smallrank, one is bigrank!
 
-We want rank by those Asin:
+We test a lot,if a ip no stop and more than 500 times http get,the list page will no robot,but the detail asin page will be robot. So we bind a proxy ip with and fix useragent, and keep all cookie. But it still happen, a IP die still can fetch detail page after 26-100times get, It tell us we can still ignore robot, and catch max 100 times we will get that page. robot page is about 7KB.
 
-![](doc/img/list.png)
+However, if a lot of request, will be like that 500 error
 
-Data we want:
-
-![](doc/img/web.png)
-
-# How to use
-
-We need **Redis** and **Mysql** and some develop environment, Such as Proxy IP Machine.
-
-We make a docker env! See `sh/docker`
-
-Got it!
-
-```bash
-    go get -v -u github.com/hunterhug/AmazonBigSpider
-```
-
-run it like that
-
-```bash
-#!/bin/sh
-nohup go run  *.go > ip.txt 2>&1 &
-```
-
-make a config and read the code!
-
-```bash
-go run ippool.go  ( sent ip to redis pool  proxy can use)
-go run urlpool.go  (send category url to redis pool the list url we want to catch)
-go run listmain.go ( catch the list page and keep local,20161111!)
-go run asinpool.go ( sent asin url to redis pool we want to catch)
-go run asinmain.go( catch asin detail page!one table asin20161111 and others is A?!)
-```
-
-![](doc/img/run.png)
-
-## Design
-
-One picture is more than a lot of words!
-
-<div style="text-align:center">
-<img src="doc/img/gosipder.jpg" style="text-align:center">
-</div>
-
-Redis Data like that:
-
-![](doc/img/redis.png)
-
-And URL fetch like this, url many be repeat:
-
-![](doc/img/urlcut.png)
-
-![](doc/img/url.jpg)
-
-Final Url data:
-
-![](doc/img/mysql.png)
-
-## SQL
-
-As sql:
-
-```sql
---- smart_base
---- category
-CREATE TABLE `smart_category` (
-  `id` varchar(100) NOT NULL,
-  `url` varchar(255) DEFAULT NULL COMMENT '类目链接',
-  `name` varchar(255) DEFAULT NULL COMMENT '类目名字',
-  `level` tinyint(4) DEFAULT NULL COMMENT '类目级别',
-  `pid` varchar(100) DEFAULT NULL COMMENT '父类id',
-  `createtime` datetime DEFAULT NULL COMMENT '创建时间',
-  `updatetime` datetime DEFAULT NULL COMMENT '更新时间',
-  `isvalid` tinyint(4) DEFAULT '0' COMMENT '是否有效',
-  `page` tinyint(4) DEFAULT '5' COMMENT '抓取页数',
-  `database` varchar(255) DEFAULT NULL COMMENT '存储数据库',
-  `col1` varchar(255) DEFAULT NULL COMMENT '预留字段',
-  `col2` varchar(255) DEFAULT NULL,
-  `col3` varchar(255) DEFAULT NULL,
-  `bigpname` varchar(255) DEFAULT NULL COMMENT '大类名字',
-  `bigpid` varchar(100) DEFAULT NULL COMMENT '大类ID',
-  `ismall` tinyint(4) DEFAULT '0' COMMENT '是否最小类',
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `url_UNIQUE` (`url`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='类目';
+For reason that the detail page is such large that waste a lot of disk space, we save the list page in the local file and the detail page you can decide whether to save it or not.
 
 
---- ASIN Collect
-CREATE TABLE `smart_asin` (
-  `id` varchar(100) NOT NULL,
-  `createtime` varchar(255) DEFAULT NULL COMMENT '添加时间',
-  `updatetime` varchar(255) DEFAULT NULL COMMENT '更新时间',
-  `category` varchar(255) DEFAULT NULL COMMENT "which category",
-  `times` int(11) DEFAULT '0' COMMENT '重复次数',
-  `isvalid` tinyint(4) DEFAULT '1' COMMENT "valid",
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Asin Big Data';
+## 3. 最新说明
 
---- Big rank by asin!
-  CREATE TABLE `A1` (
-  `id` varchar(150) NOT NULL,
-  `day` varchar(150) NOT NULL,
-  `bigname` varchar(255) DEFAULT NULL COMMENT '大类名',
-  `title` TEXT COMMENT '商品标题',
-  `rank` int(11) DEFAULT NULL COMMENT '大类排名',
-  `price` float DEFAULT NULL,
-  `sold` varchar(255) DEFAULT NULL COMMENT '自营',
-  `ship` varchar(255) DEFAULT NULL COMMENT 'FBA',
-  `score` float DEFAULT NULL COMMENT '打分',
-  `reviews` int(11) DEFAULT NULL COMMENT '评论数',
-  `createtime` varchar(255) DEFAULT NULL,
-  `img` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`,`day`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+鉴于本人精力有限, 无暇多开发新功能, 有更多需求可来邮. 目前搭了一套[亚马逊电子商务大数据智能平台](http://aws.lenggirl.com), 您可以上去观摩, 帐号密码均为`admin`, 切勿破坏, 且行且珍惜. 如果您是一名开发, 您觉得不错, 学习到了知识, 可以扫描下方二维码友情赞助. 如果你是一个电商服务公司的老板, 或者是从业者, 急需使用到该平台来进行选款, 洞察商品变化趋势, 可以来邮咨询, 我提供有偿搭建服务, 价格合理, 完全划得来.
 
+核心的爬虫包也已经拆分成库了，见[Project:Marmot(Tubo) - Golang Web Spider/Crawler/Scrapy Package | 爬虫库](https://github.com/hunterhug/marmot)。网站端也拆分成库了[Project:Rabbit(Tuzi) - Golang Enterprise Web | 简单企业网站](https://github.com/hunterhug/rabbit)
 
---- smartdb
---- Smallrank by date!
-CREATE TABLE `20161028` (
-  `id` VARCHAR(150),
-  `purl` varchar(255) DEFAULT NULL COMMENT '父类类目链接',
-  `col1` varchar(255) DEFAULT NULL COMMENT '预留字段',
-  `col2` varchar(255) DEFAULT NULL,
-  `img` varchar(255) DEFAULT NULL,
-  `iscatch` tinyint(4) DEFAULT '0' COMMENT '已抓取是1',
-  `smallrank` INT NULL COMMENT '小类排名',
-  `name` VARCHAR(255) NULL COMMENT '小类名',
-  `bigname` VARCHAR(255) NULL COMMENT '大类名',
-  `rbigname` VARCHAR(255) NULL COMMENT '实际大类名',
-  `title` TEXT NULL COMMENT '商品标题',
-  `asin` VARCHAR(255) NULL,
-  `url` VARCHAR(255) NULL,
-  `rank` INT NULL COMMENT '大类排名',
-  `soldby` VARCHAR(255) NULL COMMENT '卖家',
-  `shipby` VARCHAR(255) NULL COMMENT '物流',
-  `price` VARCHAR(255) NULL COMMENT '价格',
-  `score` FLOAT NULL COMMENT '打分',
-  `reviews` INT NULL COMMENT '评论数',
-  `commenttime` VARCHAR(255) NULL COMMENT '第一条评论时间',
-  `createtime` VARCHAR(255) NULL,
-  `updatetime` VARCHAR(255) NULL,
-  PRIMARY KEY (`id`))ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+如果这个产品有帮助到你,可以抛出请我吃下辣条吗?
 
+微信
+![微信](https://raw.githubusercontent.com/hunterhug/hunterhug.github.io/master/static/jpg/wei.png)
 
---- Big rank by date!
-  CREATE TABLE `Asin20161028` (
-  id VARCHAR(150),
-  bigname VARCHAR(255) NULL COMMENT '大类名',
-  title TEXT NULL COMMENT '商品标题',
-  rank INT NULL COMMENT '大类排名',
-  price FLOAT NULL,
-  sold VARCHAR(255) NULL COMMENT '自营',
-  ship VARCHAR(255) NULL COMMENT 'FBA',
-  score FLOAT NULL COMMENT '打分',
-  reviews INT NULL COMMENT '评论数',
-  createtime VARCHAR(255) NULL,
-  img VARCHAR(255) NULL,
-  PRIMARY KEY (`id`))ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-```
+支付宝
+![支付宝](https://raw.githubusercontent.com/hunterhug/hunterhug.github.io/master/static/jpg/ali.png)
 
-add the connections of mysql:
+爬虫有风险, 本人不承担由此开源项目带来的任何责任。
+
+## 4. 版本说明
+
+v2.0
+
+1. 增加安装详细说明
+2. 修补一些BUG
+3. 美国站类目URL已经更新: /doc/sql/days/usa_category20171026.sql(数据库导入必须是最新的)
+
+v2.3
+
+1. 解决许多BUG
+
+以下为安装使用文档
+
+## 二. 文件目录
 
 ```
-show variables like '%max_connections%';
-set global max_connections=2000
-```
-
-you can just:
-
-```
-go run initsql.go
-source /data/www/web/go/src/github.com/hunterhug/AmazonBigSpider/doc/sql/uk_category.sql
-```
-
-##  Anti robot
-
-![](doc/img/robot.png)
-
-We test a lot,if a ip no stop and more than 500 times http get,the list page will no robot,but the detail asin page will be robot.
-So we bind a proxy ip with and fix useragent, and keep all cookie. But it still happen, a IP die still can fetch detail page after 26-100times get,
-It tell us we can still ignore robot, and catch max 100 times we will get that page. robot page is about 7KB.
-
-However, if a lot of request, will be like that 500 error, hahaha
-
-![](doc/img/500.jpg)
-
-Then if robot you get the picture, will be dead!!! dangeous!
-
-![](doc/img/smart.png)
-
-Anti robot is change IP, keep all cookie. Japan List page is anti-robot but USA not!
-
-## Cost
-
-For reason that the detail page is such large that waste a lot of disk space, we save the list page in the local file and the detail page you can
-decide whether to save it or not.
-
-following is the cost of time and store
-
-![](doc/img/hehe.jpg)
-
-
-## Question
-
-EveryQuestion you can Email me gdccmcm14@live.com or 459527502@qq.com to contact me,
-
-# Design
-
-![](doc/img/1.jpg)
-
-
-![](doc/img/2.jpg)
-
-# Result
-
-![](doc/img/3.png)
-
-# ERROR
-1.Redis
-
-q1:
-
-```
-MISCONF Redis is configured to save RDB snapshots, but is currently not able to persist on disk. 
-Commands that may modify the data set are disabled. Please check Redis logs for details about the error.
-panic: REDIS ERROR
+├── config  配置文件：运行前必须配置
+│   ├── de_config.json    德国亚马逊爬虫远程配置（在本地新建一个空文件：`远程.txt` 即加载此配置）
+│   ├── de_local_config.json   德国亚马逊爬虫本地配置（默认加载这个, 以下是不同站点的配置）
+│   ├── de_log.json	德国亚马逊日志记录文件
+│   ├── jp_config.json 
+│   ├── jp_local_config.json
+│   ├── jp_log.json
+│   ├── uk_config.json
+│   ├── uk_local_config.json
+│   ├── uk_log.json
+│   ├── usa_config.json
+│   ├── usa_local_config.json
+│   └── usa_log.json
+├── doc
+│   ├── categoryrecord.xlsx   你可以看看四站（ 美国/日本/英国/德国的商品类目情况）
+│   ├── img
+│   └── sql   你必须手动导入的四站类目SQL，很大，见tool/url
+├── public
+│   ├── core   核心包
+│   └── log
+├── result结果
+│   ├── 20170731Clothing.xlsx   从网站端导出的数据(示例数据)
+│   └── 20170731Kitchen&Dining.xlsx
+├── sh          这个是脚本，我们用来快速启动爬虫的
+│   ├── docker   用来快速启动docker版redis和mysql
+│   ├── build.sh 在本地编译二进制，然后直接通过以下scp.sh发送到阿里云等机器
+│   ├── scp.sh
+│   ├── de-crontab.txt  定时器
+│   ├── jp-crontab.txt
+│   ├── uk-crontab.txt
+│   ├── usa-crontab.txt
+├── spiders   这个是爬虫入口
+│   ├── de
+│   ├── jp
+│   ├── uk
+│   └── usa
+└── tool
+    ├── python
+    └── url   四站类目数据爬取程序在这里，需要手工改代码做类目，每隔个两三个月就需要重爬一次(确认大类十分复杂...)
+├── ip.txt   你可以将固定的代理IP放在这里，因为亚马逊详情页爬太多会反爬虫
 
 ```
 
-solve it
+## 三. 如何使用
+
+安装十分复杂, 可来邮咨询.
+
+### 1. 获取代码/安装环境
+
+省略...
+
+### 2. 配置爬虫
+
+省略...
+
+### 3. 编译程序
+
+爬虫入口在：
 
 ```
-redis command
-config set stop-writes-on-bgsave-error no
+├──spiders
+	├── de
+	│   ├── asinmain.go
+	│   ├── asinpool.go
+	│   ├── initsql.go
+	│   ├── ippool.go
+	│   ├── listmain.go
+	│   ├── listparsemain.go
+	│   └── urlpool.go
+	├── jp
+	│   ├── asinmain.go
+	│   ├── asinpool.go
+	│   ├── initsql.go
+	│   ├── ippool.go
+	│   ├── listmain.go
+	│   ├── listparsemain.go
+	│   └── urlpool.go
+	├── uk
+	│   ├── asinmain.go
+	│   ├── asinpool.go
+	│   ├── initsql.go
+	│   ├── ippool.go
+	│   ├── listmain.go
+	│   ├── listparsemain.go
+	│   └── urlpool.go
+	└── usa
+	    ├── asinmain.go  4. 抓取详情页，补充大类排名等商品信息，打Mysql大类数据和Hash方便查看历史趋势
+	    ├── asinpool.go  中间产物,不用
+	    ├── initsql.go  1.初始化数据库
+	    ├── ippool.go   2.插代理IP到Redis并监控爬虫
+	    ├── listmain.go	4.抓取类目列表Top100，打redis记录额外数据以及打Mysql小类数据
+	    ├── listparsemain.go 中间产物,不用
+	    └── urlpool.go  3.打类目URL到redis，供4步骤使用
 ```
 
-q2:
+省略...
+
+### 4. 初始化数据库
+
+如果不申明，都是以美国站为例。需要填充四个站点8个数据基本数据库，以及4*80=320个HASH库，要运行上面编译好的二进制, 执行:
+
+
+省略...
 
 ```
-redis: connection pool timeout
+doc
+└── sql
+    ├── de_category.csv  德国的类目CSV，你可以打开看看
+    ├── de_category.sql  需要导入的数据库
+    ├── jp_category.csv
+    ├── jp_category.sql
+    ├── uk_category.csv
+    ├── uk_category.sql
+    ├── usa_category.csv
+    └── usa_category.sql
 ```
 
-solve it
+省略...
 
-```
-config/config.json set 
 
-"Redispoolsize":2000
-```
+### 5. 运行程序
 
-2.Mysql
+省略...
 
-q1:
+### 6. 如何使用代理IP
 
-```
-mysql error:Error 1016: Can't open file: './uk_smart_base/A296.frm' (errno: 24 - Too many open files)
-```
+因为亚马逊四站点对详情页会反爬虫，一个IP可以抓500页然后被封，但是现在市场上卖的代理IP特别多，几百万动态那种，所以不用担心这个问题。如果你自己有固定的代理IP，请把它写在`ip.txt`里面。
 
-solve it
+自建代理请见[多IP多网关Squid架设Http服务器](http://www.lenggirl.com/tool/overwall.html#http)
 
-```
-mysql command
-SHOW VARIABLES LIKE 'open_files_limit';
-SHOW GLOBAL STATUS LIKE 'Open_files';
+省略...
 
-edit my.cnf
+### 7. 分布式部署(可选)
 
-[mysqld]
-open_files_limit = 65535
+分布式部署时，由于数据量巨大，开启网站端时，容易卡，所以你可以对数据库进行读写分离，一般数据量 `不大` 可以不用。
 
-vim /etc/systemd/system/mysql.service
-add  LimitNOFILE=65535
+可以购买腾讯云，阿里云，亚马逊云，我们一般只需买一台，花费大概是每年1500左右，然后根据上述起`docker mysql/redis`（你也可以自行安装），然后在本地编译好程序，使用`./scp.sh 189.55.55.55`将二进制文件以及配置文件，传到远程机器，跑一下测试，测试没问题，再开启定时器。`scp.sh`在`sh`文件夹中。
 
-systemctl daemon-reload
-service mysqld restart
+省略...
 
-vim /etc/security/limits.conf,add
- 
-*  soft    nofile  65536
-*  hard    nofile  65536
 
-ulimit -n
-```
+### 8. 网站端
 
-q2:
+BI产品爬虫端的价值大，但是配套网站端，价值可以翻好多倍。你可以查看[Full Golang Automatic Amazon Distributed crawler|spider (USA, Japan, Germany and UK) | 亚马逊四站BI产品网站端 ](https://github.com/hunterhug/AmazonBigSpiderWeb)进行安装。
 
-```
-mysql error:Error 1040: Too many connections
-show variables like '%max_connect%';
-```
+截图如下：
 
-solve it
+类目，你可以自行更改抓取页数，是否抓取。
 
-```
-SHOW VARIABLES like 'max_%';
+![](/doc/img/ca.png)
 
-set GLOBAL max_connections=5000
-```
 
-or
+小类数据，基本Top100商品数据。
 
-```
-[mysqld]
-max_connections=15000
-```
+![](/doc/img/asin.png)
 
-q3
 
-```
-DNS skip
-[mysqld]
-skip-name-resolve
-```
+大类数据，很详细，包括大类排名等，可以复杂查询条件筛选，下载。
 
-q4
+![](/doc/img/big.png)
 
-Cannot assign requested address
+产品趋势，你可以看到产品十几天的排名变化，价格变化。
 
-```
-netstat -n | awk '/^tcp/ {++state[$NF]} END {for(key in state) 
-print key,"\t",state[key]}'
+![](/doc/img/trend.png)
 
-sysctl net.ipv4.ip_local_port_range
+导出的EXCEL
 
-1. 调低端口释放后的等待时间，默认为60s，修改为15~30s
-sysctl -w net.ipv4.tcp_fin_timeout=30
-2. 修改tcp/ip协议配置， 通过配置/proc/sys/net/ipv4/tcp_tw_resue, 默认为0，修改为1，释放TIME_WAIT端口给新连接使用
-sysctl -w net.ipv4.tcp_timestamps=1
-3. 修改tcp/ip协议配置，快速回收socket资源，默认为0，修改为1
-sysctl -w net.ipv4.tcp_tw_recycle=1
+![](/doc/img/excel.png)
 
-sysctl net.ipv4.ip_local_port_range="32768    62000"
-sysctl -w net.ipv4.tcp_fin_timeout=30
-sysctl -w net.ipv4.tcp_timestamps=1
-sysctl -w net.ipv4.tcp_tw_recycle=1
-```
 
-total
+# 四. 欢迎咨询
 
-```
-max_connections = 15000
-max_connect_errors = 6000
-open_files_limit = 65535
-table_open_cache = 1000
-skip-name-resolve
-```
+如果你想咨询或学习，请发邮件或加我QQ: 459527502。
 
-# Copyright
+开发这个产品从2016年10月就开始了, 目前迭代从2.0开始.
+
+此项目可以持续优化成功一个更好的平台, 因为国内目前还没有像淘宝数据参谋一样的亚马逊数据参谋. 由于高并发百万级每天导致的数据抓取速度问题, 和数据获取后的清洗和挖掘问题, 我们可以在以下方面做得更好. 
+
+1. 首先数据抓取速度保证和爬虫部署问题, 可以采用`Docker`自动构建, 构建`kubernetes`集群进行`deployments`部署, 自动跨容和缩容爬虫服务, 分布式爬虫不再需要手工上去跑任务.
+2. 其次数据保存在`MYSQL`产生的分表问题, 因为`MYSQL`是非分布式的集中式关系型数据库, 大量数据导致数据查找困难, 多表间数据`union`和`join`困难, 所以可以采用`ElasticSearch`来替换`MYSQL`, 著名的`JAVA Nutch搜索引擎框架`使用的就是`ES`.
+3. 最后, 关于数据获取后的清洗和挖掘问题, 是属于离线操作问题, 保存在`ES`的数据本身支持各种搜索,`ES`的文本搜索能力超出你的想象, 一般需求可以满足, 不能满足的需求则要从`ES`抽取数据, 构建不同主题的数据仓库进行定制化挖掘. 此部分, 需要开发另外的项目.
+4. 配套的`UI`网站端可以有更好的用户体验, 目前基本可以满足选款的需求, 商品的各种数据优美的显示出来.
+
+# 免责声明
+
+关于版权，爬虫有风险, 本人不承担由此开源项目带来的任何责任。
+
 ```
 	版权所有，侵权必究
 	署名-非商业性使用-禁止演绎 4.0 国际
