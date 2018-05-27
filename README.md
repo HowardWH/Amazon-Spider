@@ -6,7 +6,8 @@
 [![Go Report Card](https://goreportcard.com/badge/github.com/hunterhug/AmazonBigSpider)](https://goreportcard.com/report/github.com/hunterhug/AmazonBigSpider)
 [![GitHub issues](https://img.shields.io/github/issues/hunterhug/AmazonBigSpider.svg)](https://github.com/hunterhug/AmazonBigSpider/issues)
 
-此项目为亚马逊电商带来了过多压力，开始局部闭源，现在Github上的版本是v2.0，新的功能和修的新BUG将不再提交Github. 具体使用请查看PDF。
+此项目为亚马逊电商带来了过多压力，开始局部闭源，现在Github上的版本是v2.0，新的功能和修的新BUG将不再提交Github. 具体使用请查看PDF。 第一版Python采集见：
+[https://github.com/hunterhug/AmazonPython](https://github.com/hunterhug/AmazonPython)
 
 本人不承担该数据采集程序所带来的一切纠纷， 禁止任何机构及个人将此系统作为商业用途！ 
 
