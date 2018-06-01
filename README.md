@@ -13,6 +13,42 @@
 
 此项目使用的技术栈是云计算语言Golang和redis/mysql/docker等，由于部署需要相应的专业技能支持，有一定的技术壁垒，如何运行等细节相关问题请不要咨询。
 
+闭源版本增加若干新功能，并更新类目，去掉图书，CD和APP，类目大体如下。
+
+```
++----------------------------+-----------------+
+| bigpname                   | count(bigpname) |
++----------------------------+-----------------+
+| Amazon Launchpad           |              22 |
+| Appliances                 |              34 |
+| Arts Crafts & Sewing       |             470 |
+| Automotive                 |            3162 |
+| Baby                       |             333 |
+| Beauty & Personal Care     |             406 |
+| Camera & Photo             |             214 |
+| Cell Phones & Accessories  |              61 |
+| Clothing Shoes & Jewelry   |            1803 |
+| Collectible Coins          |               3 |
+| Computers & Accessories    |             294 |
+| Electronics                |            1292 |
+| Entertainment Collectibles |              43 |
+| Gift Cards                 |              19 |
+| Grocery & Gourmet Food     |            1324 |
+| Health & Household         |            1185 |
+| Home & Kitchen             |            1903 |
+| Industrial & Scientific    |            3325 |
+| Kitchen & Dining           |             738 |
+| Musical Instruments        |             612 |
+| Office Products            |             736 |
+| Patio Lawn & Garden        |             590 |
+| Pet Supplies               |             499 |
+| Prime Pantry               |               1 |
+| Sports & Outdoors          |            2686 |
+| Sports Collectibles        |              57 |
+| Tools & Home Improvement   |            1666 |
+| Toys & Games               |             791 |
++----------------------------+-----------------+
+```
 
 ## 一. 介绍
 
