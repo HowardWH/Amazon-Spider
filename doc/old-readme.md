@@ -39,11 +39,11 @@ Due to we want list smallrank and the bigrank at the same time, but mysql update
 
 We want rank by those Asin:
 
-![](backend/doc/img/list.png)
+![](/backend/doc/img/list.png)
 
 Data we want:
 
-![](backend/ddoc/img/web.png)
+![](/backend/ddoc/img/web.png)
 
 # How to use
 
@@ -74,7 +74,7 @@ go run asinpool.go ( sent asin url to redis pool we want to catch)
 go run asinmain.go( catch asin detail page!one table asin20161111 and others is A?!)
 ```
 
-![](backend/doc/img/run.png)
+![](/backend/doc/img/run.png)
 
 ## Design
 
@@ -86,17 +86,17 @@ One picture is more than a lot of words!
 
 Redis Data like that:
 
-![](dbackend/doc/img/redis.png)
+![](d/backend/doc/img/redis.png)
 
 And URL fetch like this, url many be repeat:
 
-![](backend/doc/img/urlcut.png)
+![](/backend/doc/img/urlcut.png)
 
-![](backend/doc/img/url.jpg)
+![](/backend/doc/img/url.jpg)
 
 Final Url data:
 
-![](backend/doc/img/mysql.png)
+![](/backend/doc/img/mysql.png)
 
 ## SQL
 
@@ -216,7 +216,7 @@ source /data/www/web/go/src/github.com/hunterhug/AmazonBigSpider/doc/sql/uk_cate
 
 ##  Anti robot
 
-![](backend/doc/img/robot.png)
+![](/backend/doc/img/robot.png)
 
 We test a lot,if a ip no stop and more than 500 times http get,the list page will no robot,but the detail asin page will be robot.
 So we bind a proxy ip with and fix useragent, and keep all cookie. But it still happen, a IP die still can fetch detail page after 26-100times get,
@@ -224,11 +224,11 @@ It tell us we can still ignore robot, and catch max 100 times we will get that p
 
 However, if a lot of request, will be like that 500 error, hahaha
 
-![](backend/doc/img/500.jpg)
+![](/backend/doc/img/500.jpg)
 
 Then if robot you get the picture, will be dead!!! dangeous!
 
-![](backend/doc/img/smart.png)
+![](/backend/doc/img/smart.png)
 
 Anti robot is change IP, keep all cookie. Japan List page is anti-robot but USA not!
 
@@ -239,7 +239,7 @@ decide whether to save it or not.
 
 following is the cost of time and store
 
-![](backend/doc/img/hehe.jpg)
+![](/backend/doc/img/hehe.jpg)
 
 
 ## Question
@@ -248,14 +248,14 @@ EveryQuestion you can Email me gdccmcm14@live.com or 459527502@qq.com to contact
 
 # Design
 
-![](backend/doc/img/1.jpg)
+![](/backend/doc/img/1.jpg)
 
 
-![](backend/doc/img/2.jpg)
+![](/backend/doc/img/2.jpg)
 
 # Result
 
-![](backend/doc/img/3.png)
+![](/backend/doc/img/3.png)
 
 # ERROR
 1.Redis
