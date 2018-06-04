@@ -1,0 +1,30 @@
+<table id="dg" title="监控列表" style="width:550px;height:250px">
+</table>
+
+<div id="toolbar">
+    <div style="font-size:1.0em">
+    </div>
+</div>
+
+<script type="text/javascript">
+    $('#dg').datagrid({
+        url: '/ajp/monitor/index',
+        collapsible: true,
+        toolbar: '#toolbar',
+        rownumbers: true,
+        pageSize:50,
+        pagination: false,
+        pageList: [50,100,150],
+        fit: true,
+        columns: [[
+            {field: 'ck', checkbox: true},
+            {field: 'id', title: '日期', width: 100},
+            {field: 'redistype', title: '队列类型', width: 100},
+            {field: 'doing', title: '排队数量', width: 100},
+            {field: 'done', title: '入队数量', width: 100},
+            {field: 'createtime', title: '队列创建时间', width: 100},
+            {field: 'updatetime', title: '队列最后更新时间', width: 100}
+        ]]
+    });
+
+</script>

@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" >
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="renderer" content="webkit">
+    <!-- 目前仅限360急速浏览 webkit:急速  ie-comp:ie兼容模式   ie-stand: ie标准模式 -->
+    <title>{{.config.Title}}</title>
+    {{str2html .config.Address}}
+    <!-- Bootstrap中文字体版 -->
+    <link href="/static/template/hunterhug/bootstrap-font/css/bootstrap.min.css" rel="stylesheet">
+    <!-- 自定义样式 -->
+    <link href="/static/template/hunterhug/css/common.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="/static/template/hunterhug/js/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="/static/template/hunterhug/bootstrap-font/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+<!-- <!-- 整站通用的头部及导航条 -->
+<div id="header">
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" style="padding:0 0 0 15px;" href="/"><img alt="Brand" style="max-height:50px;" src="{{.config.Photo}}"></a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li  class="active"><a href="/">{{i18n .Lang "home"}} <span class="sr-only">(current)</span></a><p class="line-top hidden-xs"></p></li>
+                    <!-- category -->
+                    {{range $i,$e:=.category}}
+                        {{if $e.Son}}
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{substr $e.Title 0 20}} <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                {{range $j,$ee:=$e.Son}}
+                                    <li>
+                                        <a  href="/{{$ee.Alias}}/">{{$ee.Title}}</a>
+                                    </li>
+                                {{end}}
+                            </ul>
+                        <li/>
+                        {{else}}
+                            <li><a href="/{{$e.Alias}}/">{{substr $e.Title 0 20}}</a></li>
+                        {{end}}
+                    {{end}}
+                    <!-- category -->
+                    <!-- photo -->
+                    {{range $i,$e:=.photo}}
+                    {{if $e.Son}}
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{substr $e.Title 0 20}} <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                            {{range $j,$ee:=$e.Son}}
+                                <li>
+                                    <a  href="/{{$ee.Alias}}/">{{$ee.Title}}</a>
+                                </li>
+                            {{end}}
+                            </ul>
+                        <li/>
+                    {{else}}
+                        <li><a href="/{{$e.Alias}}/">{{substr $e.Title 0 20}}</a></li>
+                    {{end}}
+                    {{end}}
+                    <!-- photo -->
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+</div>
+<!-- <!-- 整站通用的头部及导航条 -->
+
+<!-- 全屏轮播图 -->
+<div id="carousel-example-generic" class="carousel slide my-slide" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+        {{range $i,$e:=.roll}}
+                {{if eq $i 0}}
+                <li data-target="#carousel-example-generic" data-slide-to="{{$i}}" class="active"></li>
+                {{else}}
+                <li data-target="#carousel-example-generic" data-slide-to="{{$i}}"></li>
+                {{end}}
+        {{end}}
+    </ol>
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner" role="listbox">
+        {{range $i,$e:=.roll}}
+            {{if eq $i 0}}
+            <div class="item active">
+            {{else}}
+            <div class="item">
+            {{end}}
+                <a target="blank" href="{{$e.Url}}">
+                    <div class="img-box">
+                    <img src="{{$e.Photo}}" alt="{{substr $e.Title 0 20}}"/>
+                    </div>
+                </a>
+            </div>
+        {{end}}
+    </div>
+</div>
+</div>
+<!-- 全屏轮播图 -->
+<!-- 客户的鼓励 -->
+<div class="index-row our-example">
+    <div class="container">
+        <marquee direction="right">{{.config.Slogan}}</marquee>
+        <div class="row">
+            <div class="col-sm-12 main-title">
+                <h2 class="h1">{{i18n .Lang "about"}}</h2>
+
+                <p class="line line-big"></p>
+
+                <h2>
+                    <small>{{str2html .config.Content}}</small>
+                </h2>
+            </div>
+
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>
+<!-- 客户的鼓励 -->
+
+<!-- 返回顶部滑块 -->
+<div id="clan-slider">
+    <ul>
+        <li class="hidden-xs">
+            <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=459527502&site=qq&menu=yes" id="slider-qq"></a>
+            <div class="clan-slider-tips">
+                QQ: 459527502
+            </div>
+        </li>
+        <li class="hidden-xs">
+            <a id="slider-phone" href="javascript:void(0);"></a>
+            <div class="clan-slider-tips">
+                {{i18n .Lang "phone"}}:&nbsp;&nbsp;{{.config.Phone}}
+            </div>
+        </li>
+        <li class="hidden-xs">
+            <a id="slider-wechat" href="javascript:void(0);"></a>
+            <div class="clan-slider-tips-wechat">
+                <img src="/static/template/hunterhug/images/wechat.jpg">
+            </div>
+        </li>
+        <li><a id="slider-goTop" href="javascript:void(0);"></a></li>
+        <!--
+        <li class="visible-xs-block">
+            <a id="slider-menu" href="javascript:void(0);"></a>
+        </li>
+        -->
+    </ul>
+</div>
+<!-- 返回顶部滑块 --><!-- 整站通用的尾部 -->
+<div id="sidebar-bg" style="display: none;"></div>
+<!-- 通用页脚 -->
+<div id="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-6 col-sm-2 footer-item">
+                <div class="footer-list">
+                    <h4>友情链接</h4>
+                    <ul>
+                        <li><a href="https://www.github.com/hunterhug">sill~的网站</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-xs-6 col-sm-2 footer-item">
+                <div class="footer-list">
+                    <h4>资讯链接</h4>
+                    <ul>
+                    {{range $i,$e:=.category}}
+                        <li><a href="/{{$e.Alias}}/">{{substr $e.Title 0 20}}</a></li>
+                    {{end}}
+                    </ul>
+                </div>
+            </div>
+            <div class="col-xs-6 col-sm-2 footer-item">
+                <div class="footer-list">
+                    <h4>图文链接</h4>
+                    <ul>
+                    {{range $i,$e:=.photo}}
+                        <li><a href="/{{$e.Alias}}/">{{substr $e.Title 0 20}}</a></li>
+                    {{end}}
+                        <li><a href="javascript:AddFavorite('萌萌哒','http://www.lenggirl.com/');">收藏本站</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-xs-6 col-sm-2 footer-item">
+                <div class="footer-wechat">
+                    <img class="img-responsive" src="/static/template/hunterhug/images/wechat.jpg">
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-4 footer-item footer-item-last">
+                <div class="footer-contact">
+                    <h2><img src="/static/template/hunterhug/images/icons/pc-footer-phone.png">{{.config.Phone}}</h2>
+                    <h2><img src="/static/template/hunterhug/images/icons/pc-footer-qq.png">459527502</h2>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>
+<div id="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <p>{{str2html .config.Code3}}</p><div>{{str2html .config.Code2}}</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 通用页脚 -->
+<!-- 整站通用的尾部 -->
+
+
+<script type="text/javascript" src="/static/template/hunterhug/js/common.js"></script>
+
+</body>
+</html>

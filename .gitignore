@@ -37,7 +37,7 @@ rabbit
 .idea
 *.rar
 *.log
-*.html
+#*.html
 *.out
 UASIN
 UIP
