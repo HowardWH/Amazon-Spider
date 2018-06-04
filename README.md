@@ -12,7 +12,9 @@
 2. 2017.10-2018.05| 此项目为亚马逊电商带来了过多压力，~~开始局部闭源~~，现在Github上的版本是v2.0，~~闭源版本到达3.0，新的功能和修的新BUG将不再提交Github~~ 
 3. 2016.10-2016.12| 第一版Python采集端见:[这个仓库](https://github.com/hunterhug/AmazonPython)，老说明戳[这里](doc/old-readme.md)。
 
-本人不承担该数据采集程序所带来的一切纠纷， 禁止任何机构及个人将此系统作为商业用途！ 平台具体使用请查看[PDF](https://github.com/hunterhug/AmazonBigSpider/raw/master/doc/%E4%BA%9A%E9%A9%AC%E9%80%8A%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%99%BA%E8%83%BD%E9%80%89%E6%AC%BE%E5%B9%B3%E5%8F%B0%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8Cv1.2.pdf)。 
+本人不承担该数据采集程序所带来的一切纠纷， 禁止任何机构及个人将此系统作为商业用途！ 
+
+平台具体使用请查看[亚马逊大数据智能选款平台使用手册v1.2.pdf](https://github.com/hunterhug/AmazonBigSpider/raw/master/doc/%E4%BA%9A%E9%A9%AC%E9%80%8A%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%99%BA%E8%83%BD%E9%80%89%E6%AC%BE%E5%B9%B3%E5%8F%B0%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8Cv1.2.pdf)。 
 
 ### 1. 中文介绍
 
