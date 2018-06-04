@@ -1,7 +1,0 @@
-*/1 * * * * curl http://127.0.0.1:12346/mi?orderid=cdddddddddd@qq.com\&user=jinhan\&password=459527502 > /dev/null 2>&1 &
-5 0 * * * ps -ef|grep uk/U* | awk '{print $2}' |xargs -i kill {}
-20 0 * * * docker exec -d GoSpider-redis redis-cli -a GoSpider flushall
-10 2 * * * nohup /root/mydocker/go/src/github.com/hunterhug/AmazonBigSpider/spiders/uk/UURL -core=/root/mydocker/go/src/github.com/hunterhug/AmazonBigSpider/public/core -root=/root/mydocker/go/src/github.com/hunterhug/AmazonBigSpider > /dev/null 2>&1 &
-15 2 * * * nohup /root/mydocker/go/src/github.com/hunterhug/AmazonBigSpider/spiders/uk/UIP -core=/root/mydocker/go/src/github.com/hunterhug/AmazonBigSpider/public/core -root=/root/mydocker/go/src/github.com/hunterhug/AmazonBigSpider > /dev/null 2>&1 &
-20 2 * * * nohup /root/mydocker/go/src/github.com/hunterhug/AmazonBigSpider/spiders/uk/ULIST -core=/root/mydocker/go/src/github.com/hunterhug/AmazonBigSpider/public/core -root=/root/mydocker/go/src/github.com/hunterhug/AmazonBigSpider > /dev/null 2>&1 &
-0 3 * * * nohup /root/mydocker/go/src/github.com/hunterhug/AmazonBigSpider/spiders/uk/UASIN -core=/root/mydocker/go/src/github.com/hunterhug/AmazonBigSpider/public/core -root=/root/mydocker/go/src/github.com/hunterhug/AmazonBigSpider > /dev/null 2>&1 &

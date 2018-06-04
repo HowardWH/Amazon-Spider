@@ -1,0 +1,10 @@
+采集端
+
+1. ubuntu将该文件夹中的gocode目录解压到/root目录下，形成/root/gocode/
+2. 初始化参见初始化.txt
+3. 设置定时器crontab即可。
+
+网站端
+
+1. 进入gocode\src\github.com\hunterhug\AmazonBigSpiderWeb后运行rabbit -db=1初始化网站数据库
+2. 运行rabbit即可

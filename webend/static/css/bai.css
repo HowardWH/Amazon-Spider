@@ -1,0 +1,461 @@
+/*music*/
+.aplayer-lrc{
+    height:600px
+}
+
+/*打賞 脚步向上*/
+.gototop {
+    width: 144px;
+    height: 155px;
+    display: none;
+    background: url("/static/public/tu.png") no-repeat center center;
+    position: fixed;
+    bottom: 10px;
+    right: 1.4%;
+    z-index: 99;
+    -webkit-animation: hide 350ms ease-out forwards 1;
+    animation: hide 350ms ease-out forwards 1;
+    -webkit-transition: background-color 100ms ease-in-out;
+    transition: background-color 100ms ease-in-out;
+
+}
+
+.isvisible {
+    -webkit-animation: show 1s ease-out forwards 1;
+    animation: show 1s ease-out forwards 1;
+}
+
+@-webkit-keyframes hide {
+    0% {
+        opacity: 1;
+        -webkit-transform: translateY(0);
+    }
+    25% {
+        opacity: .5;
+        -webkit-transform: rotate(-3deg) translateY(-40px);
+    }
+    75% {
+        -webkit-transform: rotate(3deg);
+    }
+    100% {
+        opacity: 0;
+        -webkit-transform: translateY(100px);
+    }
+}
+
+@keyframes hide {
+    0% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    25% {
+        opacity: .5;
+        transform: rotate(-3deg) translateY(-40px);
+    }
+    75% {
+        transform: rotate(3deg);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(100px);
+    }
+}
+
+@-webkit-keyframes show {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+    25% {
+        opacity: .5;
+        -webkit-transform: rotate(-3deg) translateY(-40px);
+    }
+    75% {
+        -webkit-transform: rotate(3deg);
+    }
+    100% {
+        opacity: 1;
+        -webkit-transform: rotate(0deg);
+    }
+}
+
+@keyframes show {
+    0% {
+        transform: rotate(0deg);
+    }
+    25% {
+        opacity: .5;
+        transform: rotate(-3deg) translateY(-40px);
+    }
+    75% {
+        transform: rotate(3deg);
+    }
+    100% {
+        opacity: 1;
+        transform: rotate(0deg);
+    }
+}
+
+
+
+
+.dashang {
+    display: inline-block;
+    background-color: #00a8e6;
+    border-radius: 4px;
+    color: #fff;
+    display: block;
+    font-family: serif;
+    line-height: 25px;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 16px;
+    transition: all 0.3s;
+    width: 120px;
+    margin: 5px auto;
+    padding: 5px;
+    font-family: 'serif';
+}
+
+.hide_box {
+    z-index: 999;
+    filter: alpha(opacity=50);
+    background: #666;
+    opacity: 0.5;
+    -moz-opacity: 0.5;
+    left: 0;
+    top: 0;
+    height: 99%;
+    width: 100%;
+    position: fixed;
+    display: none;
+}
+
+.shang_box {
+    width: 540px;
+    height: 540px;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 10px;
+    position: fixed;
+    z-index: 1000;
+    left: 50%;
+    top: 50%;
+    margin-left: -280px;
+    margin-top: -280px;
+    border: 1px dotted #dedede;
+    display: none;
+}
+
+.shang_box img {
+    border: none;
+    border-width: 0;
+}
+
+.dashang:hover {
+    opacity: 0.8;
+    padding: 15px;
+    font-size: 18px;
+}
+
+.shang_close {
+    float: right;
+    display: inline-block;
+}
+
+.shang_logo {
+    display: block;
+    text-align: center;
+    margin: 20px auto;
+}
+
+.shang_tit {
+    width: 100%;
+    height: 75px;
+    text-align: center;
+    line-height: 66px;
+    color: #a3a3a3;
+    font-size: 16px;
+    background: url("/static/jpg/cy-reward-title-bg.jpg");
+    font-family: 'Microsoft YaHei';
+    margin-top: 7px;
+    margin-right: 2px;
+}
+
+.shang_tit p {
+    color: #a3a3a3;
+    text-align: center;
+    font-size: 16px;
+}
+
+.shang_payimg {
+    width: 140px;
+    padding: 10px;
+    margin: 0 auto;
+    border-radius: 3px;
+    height: 140px;
+}
+
+.shang_payimg img {
+    display: block;
+    text-align: center;
+    width: 140px;
+    height: 140px;
+}
+
+.pay_explain {
+    text-align: center;
+    margin: 10px auto;
+    font-size: 12px;
+    color: #545454;
+}
+
+.radiobox {
+    width: 16px;
+    height: 16px;
+    background: url("/static/jpg/radio2.jpg");
+    display: block;
+    float: left;
+    margin-top: 5px;
+    margin-right: 14px;
+}
+
+.checked .radiobox {
+    background: url("/static/jpg/radio1.jpg");
+}
+
+.shang_payselect {
+    text-align: center;
+    margin: 0 auto;
+    margin-top: 40px;
+    cursor: pointer;
+    height: 60px;
+    width: 280px;
+}
+
+.shang_payselect .pay_item {
+    display: inline-block;
+    margin-right: 10px;
+    float: left;
+}
+
+.shang_info {
+    clear: both;
+}
+
+.shang_info p, .shang_info a {
+    color: #C3C3C3;
+    text-align: center;
+    font-size: 12px;
+    text-decoration: none;
+    line-height: 2em;
+}
+
+.htmleaf-container {
+    margin: 0 auto;
+}
+
+@charset "utf-8";
+/* posterTvGrid */
+.posterTvGrid {
+    position: relative;
+    height: 310px;
+}
+
+.posterTvGrid img {
+    max-width: none;
+    max-height: none;
+    border: 0 none;
+    background: #888;
+}
+
+.posterTvGrid .contentHolder {
+    position: relative;
+    overflow: hidden;
+}
+
+.posterTvGrid .contentHolderUnit {
+    cursor: pointer;
+    position: absolute;
+    width: 640px;
+    height: 270px;
+}
+
+.posterTvGrid .contentHolderUnit a.elementLink {
+    display: block;
+    overflow: hidden;
+    z-index: 3;
+    position: absolute;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.posterTvGrid .contentHolderUnit img {
+    width: 100%;
+    height: 100%;
+}
+
+.posterTvGrid .contentHolderUnit .elementTitle {
+}
+
+.posterTvGrid .contentHolderUnit .elementOverlay {
+    z-index: 1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: #000;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    filter: opacity=0;
+}
+
+.posterTvGrid .contentHolderUnit .leftShadow {
+    position: absolute;
+    top: 23px;
+    left: -174px;
+    width: 174px;
+    height: 224px;
+    background: url(/static/rollpic/leftShadow.png) no-repeat;
+}
+
+.posterTvGrid .contentHolderUnit .rightShadow {
+    position: absolute;
+    top: 23px;
+    right: -174px;
+    width: 174px;
+    height: 224px;
+    background: url(/static/rollpic/rightShadow.png) no-repeat;
+}
+
+.posterTvGrid .bannerControls {
+}
+
+.posterTvGrid .leftNav, .posterTvGrid .rightNav {
+    cursor: pointer;
+    z-index: 10;
+    position: absolute;
+    top: 50%;
+    width: 45px;
+    height: 45px;
+    margin-top: -43px;
+}
+
+.posterTvGrid .leftNav {
+    left: 7px;
+    background: url("/static/left.png") no-repeat;
+    _background: none;
+    _filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="img/slide_prev_btn.png");
+}
+
+.posterTvGrid .rightNav {
+    right: 7px;
+    background: url("/static/right.png") no-repeat;
+    _background: none;
+    _filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="img/slide_next_btn.png");
+}
+
+.posterTvGrid .leftNav:hover {
+}
+
+.posterTvGrid .rightNav:hover {
+}
+
+.posterTvGrid .bottomNav {
+    z-index: 140;
+    position: absolute;
+    width: 100%;
+    height: 10px;
+    margin-top: 270px;
+    padding: 10px 0 0;
+    text-align: center;
+}
+
+.posterTvGrid .bottomNavButtonOFF {
+    cursor: pointer;
+    overflow: hidden;
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    width: 10px;
+    height: 10px;
+    margin: 0 5px;
+    vertical-align: top;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    background: #c3c3c3;
+}
+
+.posterTvGrid .bottomNavButtonOFF:hover {
+    background: #aaa;
+}
+
+.posterTvGrid .bottomNavButtonON,
+.posterTvGrid .bottomNavButtonON:hover {
+    background: #69aaec;
+}
+
+.posterTvGrid .bottomNavLeft {
+}
+
+.posterTvGrid .bottomNavRight {
+}
+
+/* Main */
+
+#main {
+    padding: 4em 4em 2em 4em;
+    background-color: #ffffff;
+    border-radius: 4px;
+}
+
+#main > header:first-child {
+    text-align: center;
+}
+
+@media screen and (max-width: 736px) {
+    #main {
+        padding: 2em 2em 0.1em 2em;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    #main {
+        padding: 2em 1em 0.1em 1em;
+    }
+
+    #posterTvGrid {
+        display: none;
+    }
+}
+
+/* Intro */
+#intro {
+    padding: 4em 4em 2em 4em;
+    /*background-color: lightpink;*/
+    border-radius: 4px;
+    text-align: center;
+    margin: auto;
+    width: 91%;
+    /*border: 1px dotted purple;*/
+}
+
+@media screen and (max-width: 736px) {
+    #intro {
+        padding: 2em 2em 0.1em 2em;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    #intro {
+        padding: 2em 1em 0.1em 1em;
+    }
+
+    #intro p br {
+        display: none;
+    }
+}

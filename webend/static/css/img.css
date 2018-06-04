@@ -1,0 +1,25 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+h1, h2, h3, h4, h5, h6, p, a {
+	font-family: 'KozGoPr6N-ExtraLight', 'STXihei', 'Microsoft YaHei', 'WenQuanYi ZenHei';
+}
+
+img{
+    width: 100%;
+}
+#me{
+    /*height:50%;*/
+    text-align: center;
+    margin: 10%
+}
+
+a {
+    color: lightblue;
+    text-decoration: none
+}
+
+a:hover{
+    color: deeppink
+}

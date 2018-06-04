@@ -1,0 +1,233 @@
+/*基本样式*/
+body {
+    margin: auto 6%;
+    /*background-image: url("/img/timg.jpg");*/
+    background-color: whitesmoke;
+    font-size: 15px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    /*line-height: 30px;*/
+}
+
+select {
+    width: auto;
+}
+
+a {
+    cursor: pointer;
+}
+
+h1, h2, h3, h4, h5, h6, p, a {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    word-wrap: break-word;
+}
+
+h1 {
+    font-size: 1.2em;
+    font-weight: 500;
+    line-height: 20px;
+}
+
+h2 {
+    font-size: 1.1em;
+    font-weight: 500;
+    line-height: 20px;
+}
+
+h3 {
+    font-size: 1.0em;
+    font-weight: 500;
+    line-height: 20px;
+}
+
+code, pre {
+    word-wrap: break-word;
+}
+
+a {
+    color: blue
+}
+
+a:hover {
+    color: deeppink
+}
+
+.isvisible {
+    -webkit-animation: show 1s ease-out forwards 1;
+    animation: show 1s ease-out forwards 1;
+}
+
+.fimage {
+    width: 100%;
+    max-width: 100%;
+}
+
+/*
+*/
+.indexb {
+    font-family: Microsoft YaHei;
+    padding: 30px;
+    width: 70%;
+    margin: 0 auto
+}
+
+.indexp {
+    padding: 30px
+}
+
+.media-body {
+    float: left;
+    padding-right: 10px;
+    width: 100%
+}
+
+/*
+头部
+*/
+.v-fork-me {
+    position: fixed;
+    right: 0;
+    top: 40px;
+    z-index: 999;
+}
+
+#head {
+    padding-top: 10px;
+    margin-top: 40px
+}
+
+/*
+内容层
+*/
+#content {
+    margin: 20px 13%;
+}
+
+.contentline {
+    border-bottom: 1px solid silver;
+    margin-bottom: 10px
+}
+
+.post-content p {
+    margin: 20px auto;
+    font-family: "lucida grande", "lucida sans unicode", lucida, helvetica, "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+}
+
+.post-content img {
+    max-width: 70%;
+    padding: 20px
+}
+
+.post-header {
+    margin-bottom: 30px;
+    border-bottom: 1px dotted black
+}
+
+.post-title {
+    text-align: center
+}
+
+.post-meta {
+    text-align: center;
+    padding-bottom: 10px;
+
+}
+
+/* Toc */
+.clickable-header {
+    cursor: pointer;
+}
+
+.clickable-header:hover {
+    text-decoration: underline;
+}
+
+.top-level-header {
+    display: inline;
+}
+
+.back-to-top {
+    margin-left: 3px;
+    cursor: pointer;
+}
+
+.tocc {
+    cursor: pointer;
+    position: fixed;
+    width: 20%;
+    height: 20px;
+    overflow: hidden;
+    background-color: white;
+    filter: alpha(opacity=30);
+    -moz-opacity: 0.3;
+    opacity: 0.3;
+    left: 30px;
+    top: 100px;
+}
+
+.tocc:hover {
+    width: 20%;
+    height: auto;
+    color: white;
+    background-color: white;
+    filter: alpha(opacity=100);
+    -moz-opacity: 1;
+    opacity: 1
+}
+
+/* 脚部 */
+#footer {
+    margin: 20px 10%;
+}
+
+#footerabout {
+    margin: 20px auto;
+}
+
+@media screen and (max-width: 600px) {
+    body {
+        margin: auto 0;
+    }
+
+    .gototop {
+        display: none;
+    }
+
+    #head {
+        padding-top: 0px;
+        margin-top: 0px
+    }
+
+    #toc {
+        display: none;
+    }
+
+    #hidetoc {
+        display: none;
+    }
+
+    .post-content img {
+        max-width: 100%;
+        padding: 0;
+        padding-top: 5px;
+        padding-bottom: 5px
+    }
+
+    .v-fork-me {
+        display: none;
+    }
+
+    #content {
+        margin: 20px auto;
+    }
+
+    .indexb {
+        font-family: Microsoft YaHei;
+        padding: 5px;
+        width: 100%;
+        margin: 0 auto
+    }
+
+    .indexp {
+        padding: 2px
+    }
+}
