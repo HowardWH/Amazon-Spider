@@ -18,7 +18,6 @@ package smartuk
 
 import (
 	"encoding/csv"
-	"encoding/json"
 	"fmt"
 	"os"
 	"strconv"
@@ -27,6 +26,7 @@ import (
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/orm"
 	"github.com/hunterhug/parrot/util"
+	"encoding/json"
 )
 
 type BigController struct {
@@ -83,14 +83,35 @@ func (this *BigController) Asin() {
 	data["rank"] = []interface{}{}
 	data["reviews"] = []interface{}{}
 	data["bigname"] = []interface{}{}
+
+	data1 := map[string][]interface{}{}
+	data1["day"] = []interface{}{}
+	data1["price"] = []interface{}{}
+	data1["score"] = []interface{}{}
+	data1["rank"] = []interface{}{}
+	data1["reviews"] = []interface{}{}
+	data1["bigname"] = []interface{}{}
 	for _, v := range maps {
+		if v["rank"].(string) == "987654321" {
+			data1["bigname"] = append(data1["bigname"], v["bigname"])
+			data1["day"] = append(data1["day"], v["day"])
+			data1["price"] = append(data1["price"], v["price"])
+			data1["score"] = append(data1["score"], v["score"])
+			data1["rank"] = append(data1["rank"], v["rank"])
+			data1["reviews"] = append(data1["reviews"], v["reviews"])
+			continue
+		}
+		data1["bigname"] = append(data1["bigname"], v["bigname"])
+		data1["day"] = append(data1["day"], v["day"])
+		data1["price"] = append(data1["price"], v["price"])
+		data1["score"] = append(data1["score"], v["score"])
+		data1["rank"] = append(data1["rank"], v["rank"])
+		data1["reviews"] = append(data1["reviews"], v["reviews"])
+
 		data["bigname"] = append(data["bigname"], v["bigname"])
 		data["day"] = append(data["day"], v["day"])
 		data["price"] = append(data["price"], v["price"])
 		data["score"] = append(data["score"], v["score"])
-		if v["rank"].(string) == "987654321"{
-			v["rank"] = 0
-		}
 		data["rank"] = append(data["rank"], v["rank"])
 		data["reviews"] = append(data["reviews"], v["reviews"])
 	}
@@ -99,6 +120,9 @@ func (this *BigController) Asin() {
 
 	dd, _ := json.Marshal(data)
 	this.Data["ddjson"] = string(dd)
+
+	dd1, _ := json.Marshal(data1)
+	this.Data["xjson"] = string(dd1)
 
 	this.Data["title"] = "Amazon.uk:" + asin
 	this.TplName = this.GetTemplate() + "/big/ukasin.html"

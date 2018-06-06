@@ -2,10 +2,10 @@ package routers
 
 import (
 	"github.com/astaxie/beego"
-	"github.com/hunterhug/rabbit/controllers/smart"
-	"github.com/hunterhug/rabbit/controllers/smartjp"
-	"github.com/hunterhug/rabbit/controllers/smartuk"
-	"github.com/hunterhug/rabbit/controllers/smartde"
+	"github.com/hunterhug/AmazonBigSpiderWeb/controllers/smart"
+	"github.com/hunterhug/AmazonBigSpiderWeb/controllers/smartjp"
+	"github.com/hunterhug/AmazonBigSpiderWeb/controllers/smartuk"
+	"github.com/hunterhug/AmazonBigSpiderWeb/controllers/smartde"
 )
 
 func smartrouter() {

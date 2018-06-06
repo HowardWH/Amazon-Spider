@@ -1,5 +1,5 @@
 /*
-	Copyright 2017 by rabbit author: gdccmcm14@live.com.
+	Copyright 2017 by AmazonBigSpider author: gdccmcm14@live.com.
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
 	You may obtain a copy of the License at

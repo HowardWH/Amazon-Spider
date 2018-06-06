@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{{.config.Title}}|{{.thiscategory.Title}}</title>
+	{{str2html .config.Address}}
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=1200, user-scalable=yes, target-densitydpi=device-dpi">
+    <link href="/static/template/default/css/common.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/diy/caa/art.styles.css">
+    <link rel="stylesheet" href="/static/diy/caa/jquery.fancybox-1.3.4.css">
+    <script src="/static/diy/caa/jquery.min.js"></script>
+    <script src="/static/diy/caa/jquery.anythingslider.min.js"></script>
+    <script src="/static/diy/caa/jquery.fancybox-1.3.4.js"></script>
+    <script src="/static/diy/caa/modernizr.custom.53451.js"></script>
+    <script src="/static/diy/caa/jquery.gallery.js"></script>
+    <script src="/static/diy/caa/art.js"></script>
+    <link rel="stylesheet" href="/static/admin/kindeditor/plugins/code/prettify1.css"/>
+    <script charset="utf-8" src="/static/admin/kindeditor/plugins/code/prettify.js"></script>
+   	<script type="text/javascript" src="/static/tool/jquery.lazyload.min.js"></script>
+    <script>
+        $(function(){
+          $("img").lazyload({ 
+         placeholder : "/static/diy/caa/img/loading.gif",
+                 effect: "fadeIn"
+           });  
+
+              prettyPrint()
+        })
+
+    </script>
+    <style>
+        .friend-link {
+            padding: 0 120px
+        }
+    </style>
+</head>
+<body class="in-page">
+<!--装饰-->
+<div class="min-head clearfix">
+    <div class="nav wrap text-right">
+        <a  href="/?lang=cn" id="cn">中文</a>&nbsp;&nbsp;
+        <a  href="/?lang=en" id="en">EN</a>&nbsp;&nbsp;
+        <a  href="https://www.github.com/hunterhug">Github</a>&nbsp;&nbsp;
+        <a  href="http://www.lenggirl.com/">Blog</a>
+    </div>
+</div>
+<!--装饰结束-->
+
+<!--导航-->
+<div class="header">
+    <div class="wrap clearfix">
+        <a href="/" class="logo fl">
+            <img style="width:190px;height:34px" src="{{.config.Photo}}" alt=""/>
+        </a>
+        <ul class="main-nav" id="mainNav" style="padding-right:178px">
+            <li>
+                <a href="/">{{i18n .Lang "home"}}</a>
+            </li>
+            {{range $i,$e:=.category}}
+            <li>
+                <a href="/{{$e.Alias}}/">{{$e.Title}}</a>
+                {{if $e.Son}}
+                <dl class="sub-nav">
+                    <dt>
+                        {{range $j,$ee:=$e.Son}}
+                        <li>
+                        <a  href="/{{$ee.Alias}}/" data-id="#jl_{{$ee.Id}}" class="tab-nav">{{$ee.Title}}</a>
+                        </li>
+                        {{end}}
+                    </dt>
+                </dl>
+                {{end}}
+            </li>
+            {{end}}
+
+            {{range $i,$e:=.photo}}
+            <li>
+                <a  href="/{{$e.Alias}}/">{{$e.Title}}</a>
+                {{if $e.Son}}
+                <dl class="sub-nav">
+                    <dt>
+                        {{range $j,$ee:=$e.Son}}
+                        <li>
+                        <a  href="/{{$ee.Alias}}/" data-id="#jl_{{$ee.Id}}" class="tab-nav">{{$ee.Title}}</a>
+                        </li>
+                        {{end}}
+                    </dt>
+                </dl>
+                {{end}}
+            </li>
+            {{end}}
+        </ul>
+    <div style="position: absolute;right: 0px;top:10px;font-size: 1.2em">{{i18n .Lang "phone"}}:&nbsp;&nbsp;{{.config.Phone}}</div>
+    </div>
+</div>
+<!--导航结束-->
+
+<div class="container">
+    <div class="box page-box wrap">
+        <!-- 内页菜单 -->
+        {{if .son}}
+        <div class="in-menu" id="inMenu">
+            <a  href="javascript:void(0);" class="btn-menu"></a>
+
+            <div class="menu-wrap">
+                <h3>{{$.thiscategory.Title}}</h3>
+                <ul class="menu-items">
+                    {{range $i,$e:=.son}}
+                    <li><a  href="/{{$e.Alias}}" class="tab-nav current">{{$e.Title}}</a></li>
+                    {{end}}
+                </ul>
+            </div>
+
+        </div>
+        {{end}}
+        <!-- end -->
+
+        <div class="hd">
+            <p class="history fr">
+                <a href="/"  class="CurrChnlCls" style="font-size: 15px">{{i18n .Lang "home"}}</a>
+                {{if .father}}
+                <a href="/{{.father.Alias}}"  class="CurrChnlCls" style="font-size: 15px">-- {{.father.Title}}</a>
+                {{end}}
+                <a href="/{{.thiscategory.Alias}}"  class="CurrChnlCls" style="font-size: 15px;color:darkred">-- {{.thiscategory.Title}}</a>
+            </p>
+
+            <h2>{{.thiscategory.Title}}<span class="en"></h2>
+        </div>
+        <div class="bd">
+				<div class="news-detail">
+					<div class="head">
+						<h1>{{substr .paper.Title 0 40}}</h1>
+						<p class="time" style='color:#444;'>{{i18n .Lang "author"}}：{{substr .paper.Author 0 10}}&nbsp;&nbsp;&nbsp;{{i18n .Lang "edit"}}：{{dateformat .paper.Createtime "2006/1/02"}}&nbsp;&nbsp;&nbsp;{{i18n .Lang "read"}}：{{.paper.View}}{{i18n .Lang "people"}}</p>
+					</div>
+					<div class="detail">
+                        <div style="padding: 20px;font-size: 0.8em;font-style: italic;border-left: 5px solid gainsboro">
+                        简介：{{substr .paper.Descontent 0 100}}
+					    </div>
+                        <div style="padding: 5px;padding-top: 20px"><a href="{{.paper.Photo}}" ><img src="{{.paper.Photo}}" /></a></div>
+                        <div style="padding: 5px;margin-bottom: 30px">
+                        {{str2html .paper.Content}}
+                        </div>
+                        <div>{{str2html .config.Code1}}</div>
+                    </div>
+				</div>
+				<div class="news-side" style="padding-top: 82px;padding-bottom: 20px">
+                    <div class="more-news">
+
+						<ul>
+                            {{range $i,$e:=.papers}}
+							<li>
+                            <a href="/{{$.thiscategory.Alias}}/{{$e.Id}}" style="font-size: 1.1em;">
+                            <strong>
+                                {{if eq $e.Istop 1}}
+                                [{{i18n $.Lang "top"}}]{{end}}
+                            {{substr $e.Title 0 25}}
+                            </strong>
+                            </a>
+                                <span  style="float: right">{{dateformat $e.Createtime "2006/1/02"}} &nbsp;&nbsp;{{i18n $.Lang "read"}}:
+                            {{$e.View}} {{i18n $.Lang "people"}}</span>
+							</li>
+                            {{end}}
+
+						</ul>
+                                    {{str2html .nums}}
+                <style>
+                    .page{
+                        font-size: 1.1em;
+                        margin-top: 10px;
+                        text-align: center;
+                    }
+                    .jj{
+                        font-size: 1.5em;
+                        display: inline;
+                    }
+                    .page b{
+                        padding: 8px;
+                    }
+                    .page a{
+                        padding: 8px;
+                    }
+
+                </style>
+					</div>
+                    </div>
+        </div>
+    </div>
+
+
+<!-- 内容区2 -->
+<div class="wrap container">
+            <div class="in-share" style="text-align: center;font-size: 15px">
+                {{if .son}}
+                    {{range $i,$e:=.son}}
+                    <p class="col">
+                        <a  href="/{{$e.Alias}}">-- {{$e.Title}}</a>
+                    </p>
+                    {{end}}
+                {{end}}
+            </div>
+</div>
+<!--内容区2结束 -->
+
+
+<!--脚部 -->
+<div class="footer">
+    <div class="wrap">
+        <!--
+        <div class="box">
+				<div class="hd">
+					<h2>导航<span class="en">NAVIGATION</span></h2>
+				</div>
+				<div class="bd">
+					<div class="tab-content">
+						<div class="tab-plane" id="syyx">
+							<div class="news-list">
+								<ul><li><a target="blank" href="/xy/jxjg/zghyys/" class="tit">中国画与书法艺术学院</a></li></ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>-->
+        <div class="logo-link">
+        <div>{{str2html .config.Code3}}</div>
+        </div>
+    </div>
+</div>
+    <!-- 返回顶部滑块 -->
+    <div id="clan-slider">
+        <ul>
+            <li class="hidden-xs">
+                <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=459527502&site=qq&menu=yes" id="slider-qq"></a>
+                <div class="clan-slider-tips">
+                    QQ: 459527502
+                </div>
+            </li>
+            <li class="hidden-xs">
+                <a id="slider-phone" href="javascript:void(0);"></a>
+                <div class="clan-slider-tips">
+                {{i18n .Lang "phone"}}:&nbsp;&nbsp;{{.config.Phone}}
+                </div>
+            </li>
+            <li><a id="slider-goTop" href="javascript:void(0);"></a></li>
+            <!--
+            <li class="visible-xs-block">
+                <a id="slider-menu" href="javascript:void(0);"></a>
+            </li>
+            -->
+        </ul>
+    </div>
+    <!-- 返回顶部滑块 --><!-- 整站通用的尾部 -->
+    <div id="sidebar-bg" style="display: none;"></div>
+
+    <script type="text/javascript" src="/static/template/default/js/common.js"></script>
+    <!--脚部结束 -->
+    <!--<p>
+    <a class="btn-to-top" title="返回顶部" target="_self" href="#">回顶部</a>
+    </p>-->
+{{str2html .config.Code2}}
+</body>
+</html>

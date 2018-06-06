@@ -24,7 +24,7 @@ import (
 	//"fmt"
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/orm"
-	"github.com/hunterhug/rabbit/lib"
+	"github.com/hunterhug/AmazonBigSpiderWeb/lib"
 	"github.com/hunterhug/parrot/util"
 )
 

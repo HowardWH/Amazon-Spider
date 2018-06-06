@@ -10,8 +10,8 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/hunterhug/rabbit/conf"
-	"github.com/hunterhug/rabbit/models/util"
+	"github.com/hunterhug/AmazonBigSpiderWeb/conf"
+	"github.com/hunterhug/AmazonBigSpiderWeb/models/util"
 )
 
 func init() {

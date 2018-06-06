@@ -12,14 +12,14 @@ import (
 )
 
 func TestMd5FS(t *testing.T) {
-	file, err := os.Open("/home/jinhan/code/src/github.com/hunterhug/rabbit/favicon.ico")
+	file, err := os.Open("/home/jinhan/code/src/github.com/hunterhug/AmazonBigSpiderWeb/favicon.ico")
 	if err != nil {
 		return
 	}
 	defer file.Close()
 	fmt.Printf("%v\n", Hashcode(Md5FS(file)))
 
-	file, err = os.Open("/home/jinhan/code/src/github.com/hunterhug/rabbit/main.go")
+	file, err = os.Open("/home/jinhan/code/src/github.com/hunterhug/AmazonBigSpiderWeb/main.go")
 	if err != nil {
 		return
 	}

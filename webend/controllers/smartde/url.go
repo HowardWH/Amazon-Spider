@@ -56,7 +56,6 @@ func (this *UrlController) Index() {
 		beego.Error("debasicdb err:" + err.Error())
 		this.Rsp(false, err.Error())
 	}
-	DB.Using("smartdb")
 	var categorys []orm.Params
 	DB.Raw("SELECT bigpname as Bigpname,id FROM smart_category where pid=0 group by bigpname,id").Values(&categorys)
 	this.Data["category"] = &categorys

@@ -2,8 +2,8 @@ package blog
 
 import (
 	"github.com/astaxie/beego/orm"
-	. "github.com/hunterhug/rabbit/lib"
-	"github.com/hunterhug/rabbit/models/blog"
+	. "github.com/hunterhug/AmazonBigSpiderWeb/lib"
+	"github.com/hunterhug/AmazonBigSpiderWeb/models/blog"
 )
 
 type PhotoController struct {

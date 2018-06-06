@@ -3,14 +3,8 @@
 
 <div id="toolbar">
     <div style="font-size:1.0em">
-    <label style="margin-left:10px"> 大类名：</label>
-    <select id='bigname' class="easyui-combobox">
-        <option value='all'>All</option>
-        <!--<option value='null'>问题数据</option>-->
-    {{range $index, $e :=.category}}
-        <option value={{$e.Bigpname}}>{{$e.id}}. {{$e.Bigpname}}</option>
-    {{end}}
-    </select>
+    <label style="margin-left:10px">类目ID：{{.url}}</label>
+        <label style="margin-left:10px">类目URL：{{.url1}}</label>
     <label style="margin-left:10px"> 日期：</label>
     <input id="date" type="text" data-p="jinhan" class="easyui-datebox" data-options="formatter:myformatter,parser:myparser" />
      <!--
@@ -42,24 +36,12 @@ return new Date(y,m-1,d);
  }
  </script>
     <a href="#" style="margin-left:10px;width:60px" class="easyui-linkbutton" onclick="getabout()">查询</a>
-        <label style="margin-left:10px"> ASIN：</label>
-        <input type="text" id="asin" name="asin" />
-        <a href="#" style="margin-left:10px;width:60px" class="easyui-linkbutton" onclick="getabout1()">查找</a>
-
-        <label style="margin-left:10px"> 小类名：</label>
-        <input type="text" id="name" name="name" />
-        <a href="#" style="margin-left:10px;width:80px" class="easyui-linkbutton" onclick="getabout2()">查找</a>
-
-        <label style="margin-left:10px"> 小类ID：</label>
-        <input type="text" id="url" name="url"/>
-        <a href="#" style="margin-left:10px;width:80px" class="easyui-linkbutton" onclick="getabout3()">查找</a>
-      <!--  <a href="#" class="easyui-linkbutton" onclick="exportdata()">全部导出</a>-->
     </div>
 </div>
 
 <script type="text/javascript">
     $('#dg').datagrid({
-        url: '/auas/base/query',
+        url: '/de/base/query',
         collapsible: true,
         toolbar: '#toolbar',
         rownumbers: true,
@@ -71,7 +53,7 @@ return new Date(y,m-1,d);
           /*  {field: 'id', title: 'ID', width: 80, hidden: true},*/
             {field: 'asin', title: 'Asin', width: 80,align: 'center',
                 formatter: function (value, row, index) {
-                    return "<a href='https://www.amazon.com/dp/" + value + "' target='_blank'>" + value + "</a>";
+                    return "<a href='https://www.amazon.de/dp/" + value + "' target='_blank'>" + value + "</a>";
                 }},
             {field: 'title', title: '标题', width: 300,
                 formatter: function (value, row, index) {
@@ -95,7 +77,7 @@ return new Date(y,m-1,d);
                 if(value=="No sold"){
                     return d
                 }
-                if(value=="Amazon.com" || value==null){
+                if(value=="Amazon.de" || value==null){
                     return d
                 }
                 return "<a href='" + value + "' target='_blank'>" + "Sold" + "</a>";
@@ -114,7 +96,7 @@ return new Date(y,m-1,d);
                 }},
                   {field: 'histroy', title: '历史趋势', width: 120,align: 'center',
             formatter: function (value, row, index) {
-                    return "<a target='_blank' href='/auas/big/asin?asin="+row.asin+"'>历史趋势</a>"
+                    return "<a target='_blank' href='/de/big/asin?asin="+row.asin+"'>历史趋势</a>"
                 }
                 },
            /* {field: 'iscatch', title: '状态', width: 120,align: 'center',
@@ -149,130 +131,17 @@ return new Date(y,m-1,d);
 
     function getabout() {
         var datename = $('#date').datebox('getValue');
-        if(datename==""){
-                       $.messager.show({	// show error message
-                title: '消息',
-                msg: "日期不能为空(20161010)"
-            });
-            return
-        }
-        var bigname = $('#bigname').combobox('getValue');
-        //var iscatch = $('#iscatch').combobox('getValue');
-       // if(iscatch=="1" || iscatch=="0"||iscatch=="2"){
-        $('#dg').datagrid('load', {
-            datename: datename,
-            bigname: bigname,
-            iscatch:"2"
-        });
-
-      /* }else{
-                  $.messager.show({	// show error message
-                title: '消息',
-                msg: "抓取状态错误"
-            });
-        }*/
-    }
-
-        function exportdata() {
-        var datename = $('#date').datebox('getValue');
-        if(datename==""){
-           $.messager.show({	// show error message
-                title: '消息',
-                msg: "请选择日期"
-            });
-            return
-        }
-        if(bigname=="all"){
-           $.messager.show({	// show error message
-                title: '消息',
-                msg: "不能导出全部大类"
-            });
-        }
-        var bigname = $('#bigname').combobox('getValue');
-        $.post('/auas/base/export', {'datename':datename,'bigname': bigname}, function (result) {
-                if(result.status==true){
-                    window.open(result.info)
-                }else{
-                $.messager.show({	// show error message
-                title: '消息',
-                msg: result.info
-            });
-                }
-           })
-    }
-
-     function getabout1() {
-     var datename = $('#date').datebox('getValue');
-        if(datename==""){
-                       $.messager.show({	// show error message
-                title: '消息',
-                msg: "日期不能为空(20161010)"
-            });
-            return
-        }
-        var asin = $('#asin').val();
-        //alert(asin)
-        if(asin==""){
-          $.messager.show({	// show error message
-                title: '消息',
-                msg: "Asin不能为空"
-            });
-        return
-        }
-        $('#dg').datagrid('load', {
-         datename: datename,
-            asin:asin
-        });
-
-    }
-
-    function getabout2() {
-     var datename = $('#date').datebox('getValue');
-        if(datename==""){
-                       $.messager.show({	// show error message
-                title: '消息',
-                msg: "日期不能为空(20161010)"
-            });
-            return
-        }
-        var asin = $('#name').val();
-        //alert(asin)
-        if(asin==""){
-          $.messager.show({	// show error message
-                title: '消息',
-                msg: "name不能为空"
-            });
-        return
-        }
-        $('#dg').datagrid('load', {
-         datename: datename,
-            name:asin
-        });
-
-    }
-
-    function getabout3() {
-        var datename = $('#date').datebox('getValue');
-        if(datename==""){
+        if (datename == "") {
             $.messager.show({	// show error message
                 title: '消息',
                 msg: "日期不能为空(20161010)"
             });
             return
         }
-        var asin = $('#url').val();
-        //alert(asin)
-        if(asin==""){
-            $.messager.show({	// show error message
-                title: '消息',
-                msg: "name不能为空"
-            });
-            return
-        }
         $('#dg').datagrid('load', {
             datename: datename,
-            url:asin
+            url: "{{.url}}",
+            iscatch: "2"
         });
-
     }
 </script>

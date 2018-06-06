@@ -18,13 +18,13 @@ package smartuk
 
 import (
 	"encoding/csv"
-	"os"
-	"strconv"
-	"strings"
-
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/orm"
 	"github.com/hunterhug/parrot/util"
+	"os"
+	"strconv"
+	"strings"
+	"fmt"
 )
 
 type UsaController struct {
@@ -42,7 +42,25 @@ func (this *UsaController) Index() {
 	DB.Raw("SELECT bigpname as Bigpname,id FROM smart_category where pid=0 group by bigpname,id").Values(&categorys)
 	this.Data["category"] = &categorys
 	this.Layout = this.GetTemplate() + "/base/layout.html"
-	this.TplName = this.GetTemplate() + "/usa/uklist.html"
+
+	url := this.GetString("url", "")
+	url = strings.TrimSpace(url)
+	if url != "" {
+		this.Data["url"] = url
+		var t []orm.Params
+		s := ""
+		dudu := "SELECT url,name FROM smart_category where id='" + url + "'"
+		//fmt.Println(dudu)
+		DB.Raw(dudu).Values(&t)
+		//fmt.Printf("%#v", t)
+		if len(t) >= 1 {
+			s = fmt.Sprintf("%#v", t[0])
+		}
+		this.Data["url1"] = s
+		this.TplName = this.GetTemplate() + "/usa/uklist2.html"
+	} else {
+		this.TplName = this.GetTemplate() + "/usa/uklist.html"
+	}
 
 }
 
@@ -64,11 +82,30 @@ func (this *UsaController) Query() {
 	rows, _ := this.GetInt("rows", 30)
 	start := (page - 1) * rows
 
+	url := this.GetString("url")
+	url = strings.TrimSpace(url)
 	if name != "" {
-		dudu := "SELECT * FROM `" + date + "`where name='" + name + "' limit " + strconv.Itoa(start) + "," + strconv.Itoa(rows) + ";"
+		dudu := "SELECT * FROM `" + date + "`where name='" + name + "' order by smallrank limit " + strconv.Itoa(start) + "," + strconv.Itoa(rows) + ";"
 		//fmt.Println(dudu)
 		DB.Raw(dudu).Values(&maps)
 		dudu1 := "SELECT count(*) FROM `" + date + "`where name='" + name + "'"
+		DB.Raw(dudu1).QueryRow(&num)
+		if len(maps) == 0 {
+			this.Data["json"] = &map[string]interface{}{"total": num, "rows": []interface{}{}}
+		} else {
+			this.Data["json"] = &map[string]interface{}{"total": num, "rows": &maps}
+		}
+		this.ServeJSON()
+		return
+	}
+
+	if url != "" {
+		dudu := "SELECT * FROM `" + date + "` where id regexp \".*[|]%s$\" order by smallrank limit " + strconv.Itoa(start) + "," + strconv.Itoa(rows) + ";"
+		dudu = fmt.Sprintf(dudu, url)
+		fmt.Println(dudu)
+		DB.Raw(dudu).Values(&maps)
+		dudu1 := "SELECT count(*) FROM `" + date + "` where id regexp \".*[|]%s$\""
+		dudu1 = fmt.Sprintf(dudu1, url)
 		DB.Raw(dudu1).QueryRow(&num)
 		if len(maps) == 0 {
 			this.Data["json"] = &map[string]interface{}{"total": num, "rows": []interface{}{}}

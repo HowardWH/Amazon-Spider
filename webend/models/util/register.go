@@ -2,8 +2,8 @@ package util
 
 import (
 	"github.com/astaxie/beego/orm"
-	"github.com/hunterhug/rabbit/models/admin"
-	"github.com/hunterhug/rabbit/models/blog"
+	"github.com/hunterhug/AmazonBigSpiderWeb/models/admin"
+	"github.com/hunterhug/AmazonBigSpiderWeb/models/blog"
 )
 
 func RegisterDBAdminModel() {

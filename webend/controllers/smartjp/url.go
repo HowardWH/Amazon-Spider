@@ -37,7 +37,7 @@ func (this *UrlController) Monitor() {
 		if err != nil {
 			beego.Error("jpbasicdb err:" + err.Error())
 			this.Rsp(false, err.Error())
-			return;
+			return
 		}
 
 		var datas []orm.Params
@@ -50,7 +50,6 @@ func (this *UrlController) Monitor() {
 	this.TplName = this.GetTemplate() + "/url/jmonitor.html"
 }
 
-
 func (this *UrlController) Index() {
 	DB := orm.NewOrm()
 	err := DB.Using("jpbasicdb")
@@ -58,7 +57,6 @@ func (this *UrlController) Index() {
 		beego.Error("jpbasicdb err:" + err.Error())
 		this.Rsp(false, err.Error())
 	}
-	DB.Using("smartdb")
 	var categorys []orm.Params
 	DB.Raw("SELECT bigpname as Bigpname,id FROM smart_category where pid=0 group by bigpname,id").Values(&categorys)
 	this.Data["category"] = &categorys
