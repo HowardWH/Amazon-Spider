@@ -18,7 +18,7 @@
             <option value="3">第三层</option>
             <option value="4">第四层</option>
             <option value="5">第五层</option>
-         <option value="6">第六层</option>
+            <option value="6">第六层</option>
         </select>
         <label style="margin-left:10px"> 类目状态：</label>
         <select id='isvalid' class="easyui-combobox" style="width:100px">
@@ -66,6 +66,23 @@
         columns: [[
         {field: 'ck', checkbox: true},
             {field: 'id', title: 'ID', width: 100},
+            {field: 'isvalid', title: '状态', width: 120,
+                formatter: function (value, row, index) {
+                    $para = row.id;
+                    if(value=="1"){
+                        return "<span style='color:green'>存活</span>| <button style='color:red;font-size:1.1em;margin-left:10px;cursor:pointer' onclick='querynext2(\"" + $para + "\")'>查找下级</a>";
+                    }
+                    else{
+                        return "<span style='color:red'>死亡</span>| <button style='color:red;font-size:1.1em;margin-left:10px;cursor:pointer' onclick='querynext2(\"" + $para + "\")'>查找下级</a>";
+                    }
+                }
+            },
+            {field: 'idxx', title: '查看指定日期排名', width: 100,align: 'center',
+                formatter: function (value, row, index) {
+                    $para = row.id;
+                    return "<span style='color:red'></span><button style='color:red;font-size:1.1em;margin-left:10px;cursor:pointer' onclick='querynext3(\"" + $para + "\")'>点击查找</a>";
+                    }
+                },
             {field: 'url', title: '类目', width: 300,align: 'center',
                 formatter: function (value, row, index) {
                     return "<a href='" + value + "' target='_blank'>" + row.name + "</a>";
@@ -88,18 +105,7 @@
                     return value;
                 }
             },
-            {field: 'page', title: '页数', width: 50},
-            {field: 'isvalid', title: '状态', width: 120,
-                formatter: function (value, row, index) {
-                   $para = row.id;
-                   if(value=="1"){
-                    return "<span style='color:green'>存活</span>| <button style='color:red;font-size:1.1em;margin-left:10px;cursor:pointer' onclick='querynext2(\"" + $para + "\")'>查找下级</a>";
-                   }
-                   else{
-                    return "<span style='color:red'>死亡</span>| <button style='color:red;font-size:1.1em;margin-left:10px;cursor:pointer' onclick='querynext2(\"" + $para + "\")'>查找下级</a>";
-                    }
-                }
-            }
+            {field: 'page', title: '页数', width: 50}
         ]]
     });
 
@@ -115,6 +121,13 @@
             level:level
         });
     }
+
+       function queryname() {
+        var name = $('#name').val();
+        $('#dg').datagrid('load', {
+           name:name
+        });
+       }
 
        function querynext() {
         var next = $('#next').val();
@@ -135,10 +148,9 @@
         });
     }
 
-    function querynext2(id) {
-        $('#dg').datagrid('load', {
-           next:id
-        });
+
+    function querynext3(url){
+        window.open("/de/base/index?url="+url)
     }
 
      function good() {
@@ -146,7 +158,7 @@
         if (rows.length != 0) {
             $.messager.confirm('Confirm', '你确定要生效？', function (r) {
                 if (r) {
-                    var uri = "/auas/url/update";
+                    var uri = "/de/url/update";
                     for (var i = 0; i < rows.length; i++) {
                         var row = rows[i];
                         $.post(uri, {'id': row.id,'isvalid':1}, function (result) {
@@ -171,7 +183,7 @@
           if (rows.length != 0) {
             $.messager.confirm('Confirm', '你确定要失效？', function (r) {
                 if (r) {
-                    var uri = "/auas/url/update";
+                    var uri = "/de/url/update";
                     for (var i = 0; i < rows.length; i++) {
                         var row = rows[i];
                         $.post(uri, {'id': row.id,'isvalid':0}, function (result) {
@@ -203,7 +215,7 @@ function page() {
         if (rows.length != 0) {
             $.messager.confirm('Confirm', '你确定要改页数？', function (r) {
                 if (r) {
-                    var uri = "/auas/url/update";
+                    var uri = "/de/url/update";
                     for (var i = 0; i < rows.length; i++) {
                         var row = rows[i];
                         $.post(uri, {'id': row.id,'page':page}, function (result) {
