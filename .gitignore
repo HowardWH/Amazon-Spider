@@ -21,7 +21,6 @@ _testmain.go
 
 test/
 .idea/
-log/
 
 *.iml
 *.xml

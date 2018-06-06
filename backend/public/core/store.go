@@ -136,6 +136,8 @@ func CreateAsinRankTables() error {
   createtime VARCHAR(255) NULL,
   img VARCHAR(255) NULL,
   relate TEXT COMMENT 'USA附加ASIN购物篮',
+  other1 TEXT COMMENT '预留',
+  other2 TEXT COMMENT '预留',
   PRIMARY KEY (id))ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;`
 	_, err := DataDb.Create(fmt.Sprintf(sql, Today))
 	return err

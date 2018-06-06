@@ -109,6 +109,8 @@ func InitDB() {
 	  bigname varchar(255) DEFAULT NULL COMMENT '大类名',
 	  title TEXT COMMENT '商品标题',
       relate TEXT COMMENT 'USA附加ASIN购物篮',
+	  other1 TEXT COMMENT '预留',
+	  other2 TEXT COMMENT '预留',
 	  rank int(11) DEFAULT NULL COMMENT '大类排名',
 	  price float DEFAULT NULL,
 	  sold varchar(255) DEFAULT NULL COMMENT '自营',
