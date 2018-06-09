@@ -40,7 +40,7 @@ func GetUrl(ip string, url string, filename string, name string, bigname string,
 	if firstproxy {
 		ip = GetIP()
 		// before use, send to hash pool
-		ipbegintimes = util.GetSecord2DateTimes(util.GetSecordTimes())
+		ipbegintimes = util.GetSecond2DateTimes(util.GetSecondTimes())
 		RedisClient.Hset(MyConfig.Proxyhashpool, ip, ipbegintimes)
 	}
 	for i := 1; i <= page; i++ {
@@ -60,7 +60,7 @@ func GetUrl(ip string, url string, filename string, name string, bigname string,
 				// if proxy ip err more than config, change ip
 				if proxy && ok && dspider.Errortimes > MyConfig.Proxymaxtrytimes {
 					// die sent
-					ipendtimes := util.GetSecord2DateTimes(util.GetSecordTimes())
+					ipendtimes := util.GetSecond2DateTimes(util.GetSecondTimes())
 					insidetemp := ipbegintimes + "|" + ipendtimes + "|" + util.IS(dspider.Fetchtimes-dspider.Errortimes) + "|" + util.IS(dspider.Errortimes)
 					RedisClient.Hset(MyConfig.Proxyhashpool, ip, insidetemp)
 					// you know it
@@ -68,7 +68,7 @@ func GetUrl(ip string, url string, filename string, name string, bigname string,
 					// get new proxy again
 					ip = GetIP()
 					AmazonListLog.Errorf("更换IP：%s", ip)
-					ipbegintimes = util.GetSecord2DateTimes(util.GetSecordTimes())
+					ipbegintimes = util.GetSecond2DateTimes(util.GetSecondTimes())
 					RedisClient.Hset(MyConfig.Proxyhashpool, ip, ipbegintimes)
 				}
 				continue
@@ -86,7 +86,7 @@ func GetUrl(ip string, url string, filename string, name string, bigname string,
 					AmazonListLog.Errorf("get %s fail(%d),total(%d),ip:%s", temp, dspider.Errortimes, dspider.Fetchtimes, ip)
 					if proxy && ok && dspider.Errortimes > MyConfig.Proxymaxtrytimes {
 						// die sent
-						ipendtimes := util.GetSecord2DateTimes(util.GetSecordTimes())
+						ipendtimes := util.GetSecond2DateTimes(util.GetSecondTimes())
 						insidetemp := ipbegintimes + "|" + ipendtimes + "|" + util.IS(dspider.Fetchtimes-dspider.Errortimes) + "|" + util.IS(dspider.Errortimes)
 						RedisClient.Hset(MyConfig.Proxyhashpool, ip, insidetemp)
 						// you know it
@@ -94,7 +94,7 @@ func GetUrl(ip string, url string, filename string, name string, bigname string,
 						// get new proxy again
 						ip = GetIP()
 						AmazonListLog.Errorf("更换IP：%s", ip)
-						ipbegintimes = util.GetSecord2DateTimes(util.GetSecordTimes())
+						ipbegintimes = util.GetSecond2DateTimes(util.GetSecondTimes())
 						RedisClient.Hset(MyConfig.Proxyhashpool, ip, ipbegintimes)
 					}
 					continue
@@ -143,7 +143,7 @@ func GetJapanUrl(ip string, url string, filename string, name string, bigname st
 	if firstproxy {
 		ip = GetIP()
 		// before use, send to hash pool
-		ipbegintimes = util.GetSecord2DateTimes(util.GetSecordTimes())
+		ipbegintimes = util.GetSecond2DateTimes(util.GetSecondTimes())
 		RedisClient.Hset(MyConfig.Proxyhashpool, ip, ipbegintimes)
 	}
 	for i := 1; i <= page; i++ {
@@ -163,7 +163,7 @@ func GetJapanUrl(ip string, url string, filename string, name string, bigname st
 				// if proxy ip err more than config, change ip
 				if proxy && ok && dspider.Errortimes > MyConfig.Proxymaxtrytimes {
 					// die sent
-					ipendtimes := util.GetSecord2DateTimes(util.GetSecordTimes())
+					ipendtimes := util.GetSecond2DateTimes(util.GetSecondTimes())
 					insidetemp := ipbegintimes + "|" + ipendtimes + "|" + util.IS(dspider.Fetchtimes-dspider.Errortimes) + "|" + util.IS(dspider.Errortimes)
 					RedisClient.Hset(MyConfig.Proxyhashpool, ip, insidetemp)
 					// you know it
@@ -171,7 +171,7 @@ func GetJapanUrl(ip string, url string, filename string, name string, bigname st
 					// get new proxy again
 					ip = GetIP()
 					AmazonListLog.Errorf("更换IP：%s", ip)
-					ipbegintimes = util.GetSecord2DateTimes(util.GetSecordTimes())
+					ipbegintimes = util.GetSecond2DateTimes(util.GetSecondTimes())
 					RedisClient.Hset(MyConfig.Proxyhashpool, ip, ipbegintimes)
 				}
 				continue
@@ -189,7 +189,7 @@ func GetJapanUrl(ip string, url string, filename string, name string, bigname st
 					AmazonListLog.Errorf("get %s fail(%d),total(%d),ip:%s", temp, dspider.Errortimes, dspider.Fetchtimes, ip)
 					if proxy && ok && dspider.Errortimes > MyConfig.Proxymaxtrytimes {
 						// die sent
-						ipendtimes := util.GetSecord2DateTimes(util.GetSecordTimes())
+						ipendtimes := util.GetSecond2DateTimes(util.GetSecondTimes())
 						insidetemp := ipbegintimes + "|" + ipendtimes + "|" + util.IS(dspider.Fetchtimes-dspider.Errortimes) + "|" + util.IS(dspider.Errortimes)
 						RedisClient.Hset(MyConfig.Proxyhashpool, ip, insidetemp)
 						// you know it
@@ -197,7 +197,7 @@ func GetJapanUrl(ip string, url string, filename string, name string, bigname st
 						// get new proxy again
 						ip = GetIP()
 						AmazonListLog.Errorf("更换IP：%s", ip)
-						ipbegintimes = util.GetSecord2DateTimes(util.GetSecordTimes())
+						ipbegintimes = util.GetSecond2DateTimes(util.GetSecondTimes())
 						RedisClient.Hset(MyConfig.Proxyhashpool, ip, ipbegintimes)
 					}
 					continue
@@ -221,7 +221,7 @@ func GetJapanUrl(ip string, url string, filename string, name string, bigname st
 						AmazonListLog.Errorf("%s:%s", temtemp, e.Error())
 						if proxy && ok && dspider.Errortimes > MyConfig.Proxymaxtrytimes {
 							// die sent
-							ipendtimes := util.GetSecord2DateTimes(util.GetSecordTimes())
+							ipendtimes := util.GetSecond2DateTimes(util.GetSecondTimes())
 							insidetemp := ipbegintimes + "|" + ipendtimes + "|" + util.IS(dspider.Fetchtimes-dspider.Errortimes) + "|" + util.IS(dspider.Errortimes)
 							RedisClient.Hset(MyConfig.Proxyhashpool, ip, insidetemp)
 							// you know it
@@ -229,7 +229,7 @@ func GetJapanUrl(ip string, url string, filename string, name string, bigname st
 							// get new proxy again
 							ip = GetIP()
 							AmazonListLog.Errorf("更换IP：%s", ip)
-							ipbegintimes = util.GetSecord2DateTimes(util.GetSecordTimes())
+							ipbegintimes = util.GetSecond2DateTimes(util.GetSecondTimes())
 							RedisClient.Hset(MyConfig.Proxyhashpool, ip, ipbegintimes)
 						}
 						continue
@@ -239,7 +239,7 @@ func GetJapanUrl(ip string, url string, filename string, name string, bigname st
 						AmazonListLog.Errorf("get %s fail(%d),total(%d),ip:%s", temtemp, dspider.Errortimes, dspider.Fetchtimes, ip)
 						if proxy && ok && dspider.Errortimes > MyConfig.Proxymaxtrytimes {
 							// die sent
-							ipendtimes := util.GetSecord2DateTimes(util.GetSecordTimes())
+							ipendtimes := util.GetSecond2DateTimes(util.GetSecondTimes())
 							insidetemp := ipbegintimes + "|" + ipendtimes + "|" + util.IS(dspider.Fetchtimes-dspider.Errortimes) + "|" + util.IS(dspider.Errortimes)
 							RedisClient.Hset(MyConfig.Proxyhashpool, ip, insidetemp)
 							// you know it
@@ -247,7 +247,7 @@ func GetJapanUrl(ip string, url string, filename string, name string, bigname st
 							// get new proxy again
 							ip = GetIP()
 							AmazonListLog.Errorf("更换IP：%s", ip)
-							ipbegintimes = util.GetSecord2DateTimes(util.GetSecordTimes())
+							ipbegintimes = util.GetSecond2DateTimes(util.GetSecondTimes())
 							RedisClient.Hset(MyConfig.Proxyhashpool, ip, ipbegintimes)
 						}
 						continue
@@ -295,7 +295,7 @@ func GetUrls() error {
 			AmazonListLog.Errorf("exist %s", urlmap)
 			continue
 		}
-		urlbegintime := util.GetSecord2DateTimes(util.GetSecordTimes())
+		urlbegintime := util.GetSecond2DateTimes(util.GetSecondTimes())
 		// start catch url
 		temp := strings.Split(urlmap, "|")
 
@@ -324,7 +324,7 @@ func GetUrls() error {
 		// done! rem redis deal pool
 		RedisClient.Lrem(MyConfig.Urldealpool, 0, urlmap)
 		// throw it to a hash pool
-		urlendtimes := util.GetSecord2DateTimes(util.GetSecordTimes())
+		urlendtimes := util.GetSecond2DateTimes(util.GetSecondTimes())
 		RedisClient.Hset(MyConfig.Urlhashpool, urlmap, urlbegintime+"|"+urlendtimes)
 	}
 	return nil
@@ -349,7 +349,7 @@ func GetNoneProxyUrls(taskname string) error {
 			AmazonListLog.Errorf("exist %s", urlmap)
 			continue
 		}
-		urlbegintime := util.GetSecord2DateTimes(util.GetSecordTimes())
+		urlbegintime := util.GetSecond2DateTimes(util.GetSecondTimes())
 
 		// start catch url
 		temp := strings.Split(urlmap, "|")
@@ -376,7 +376,7 @@ func GetNoneProxyUrls(taskname string) error {
 		// done! rem redis deal pool
 		RedisClient.Lrem(MyConfig.Urldealpool, 0, urlmap)
 		// throw it to a hash pool
-		urlendtimes := util.GetSecord2DateTimes(util.GetSecordTimes())
+		urlendtimes := util.GetSecond2DateTimes(util.GetSecondTimes())
 		RedisClient.Hset(MyConfig.Urlhashpool, urlmap, urlbegintime+"|"+urlendtimes)
 	}
 	return nil

@@ -32,7 +32,7 @@ func CollectAsin(files []string) {
 			continue
 		}
 		fileinfo, _ := util.GetFilenameInfo(file)
-		createtime := util.GetSecord2DateTimes(fileinfo.ModTime().Unix())
+		createtime := util.GetSecond2DateTimes(fileinfo.ModTime().Unix())
 		insertlist, err := ParseList(text)
 		if err != nil {
 			AmazonIpLog.Errorf("Parse %s-error:%s", file, err.Error())

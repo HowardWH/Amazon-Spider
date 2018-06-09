@@ -65,7 +65,7 @@ func GetAsinUrls() error {
 	ip := GetIP()
 
 	// before use, send to hash pool
-	ipbegintimes := util.GetSecord2DateTimes(util.GetSecordTimes())
+	ipbegintimes := util.GetSecond2DateTimes(util.GetSecondTimes())
 	RedisClient.Hset(MyConfig.Proxyhashpool, ip, ipbegintimes)
 
 	// do a lot url still can't pop url
@@ -83,7 +83,7 @@ func GetAsinUrls() error {
 			continue
 		}
 
-		urlbegintime := util.GetSecord2DateTimes(util.GetSecordTimes())
+		urlbegintime := util.GetSecond2DateTimes(util.GetSecondTimes())
 
 		content := []byte("")
 		err = nil
@@ -109,14 +109,14 @@ func GetAsinUrls() error {
 			// if proxy ip err more than config, change ip
 			if ok && spider.Errortimes > MyConfig.Proxymaxtrytimes {
 				// die sent
-				ipendtimes := util.GetSecord2DateTimes(util.GetSecordTimes())
+				ipendtimes := util.GetSecond2DateTimes(util.GetSecondTimes())
 				insidetemp := ipbegintimes + "|" + ipendtimes + "|" + util.IS(spider.Fetchtimes-spider.Errortimes) + "|" + util.IS(spider.Errortimes)
 				RedisClient.Hset(MyConfig.Proxyhashpool, ip, insidetemp)
 				// you know it
 				Spiders.Delete(ip)
 				// get new proxy again
 				ip = GetIP()
-				ipbegintimes = util.GetSecord2DateTimes(util.GetSecordTimes())
+				ipbegintimes = util.GetSecond2DateTimes(util.GetSecondTimes())
 				RedisClient.Hset(MyConfig.Proxyhashpool, ip, ipbegintimes)
 			}
 		}
@@ -138,7 +138,7 @@ func GetAsinUrls() error {
 		// done! rem redis deal pool
 		RedisClient.Lrem(MyConfig.Asindealpool, 0, url)
 		// throw it to a hash pool
-		urlendtimes := util.GetSecord2DateTimes(util.GetSecordTimes())
+		urlendtimes := util.GetSecond2DateTimes(util.GetSecondTimes())
 		RedisClient.Hset(MyConfig.Asinhashpool, url, urlbegintime+"|"+urlendtimes)
 	}
 	return nil
@@ -163,7 +163,7 @@ func GetNoneProxyAsinUrls(taskname string) error {
 			AmazonAsinLog.Errorf("exist %s", url)
 			continue
 		}
-		urlbegintime := util.GetSecord2DateTimes(util.GetSecordTimes())
+		urlbegintime := util.GetSecond2DateTimes(util.GetSecondTimes())
 
 		content := []byte("")
 		err = nil
@@ -212,7 +212,7 @@ func GetNoneProxyAsinUrls(taskname string) error {
 		// done! rem redis deal pool
 		RedisClient.Lrem(MyConfig.Asindealpool, 0, url)
 		// throw it to a hash pool
-		urlendtimes := util.GetSecord2DateTimes(util.GetSecordTimes())
+		urlendtimes := util.GetSecond2DateTimes(util.GetSecondTimes())
 		RedisClient.Hset(MyConfig.Asinhashpool, url, urlbegintime+"|"+urlendtimes)
 	}
 	return nil

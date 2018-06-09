@@ -8,7 +8,7 @@
 
 ## 一. 介绍
 
-1. 2018.06-now| 全新出发，良心发现，代码全部开源，并且采集端和网站端全部合并在一个仓库。
+1. 2018.06-now| 全新出发，代码全部开源，并且采集端和网站端全部合并在一个仓库。
 2. 2017.10-2018.05| 此项目为亚马逊电商带来了过多压力，~~开始局部闭源~~，现在Github上的版本是v2.0，~~闭源版本到达3.0，新的功能和修的新BUG将不再提交Github~~ 
 3. 2016.10-2016.12| 第一版Python采集端见:[这个仓库](https://github.com/hunterhug/AmazonPython)，老说明戳[这里](doc/old-readme.md)。
 
@@ -40,6 +40,14 @@
 
 分布式，高并发，跨平台，多站点，多种自定义配置，极强的容错能力是这个爬虫的特点。机器数量和IP代理足够情况下，每天每个站点可满足抓取几百万的商品数据。
 
+如果这个产品有帮助到你,可以抛出请我吃下辣条吗?
+
+微信
+![微信](https://raw.githubusercontent.com/hunterhug/hunterhug.github.io/master/static/jpg/wei.png)
+
+支付宝
+![支付宝](https://raw.githubusercontent.com/hunterhug/hunterhug.github.io/master/static/jpg/ali.png)
+
 ### 2. 英语介绍
 
 Support UAS/Japan/Germany/UK, Amazing!
@@ -68,15 +76,6 @@ For reason that the detail page is such large that waste a lot of disk space, we
 鉴于本人精力有限, 无暇多开发新功能, 有更多需求可来邮. 目前搭了一套[亚马逊电子商务大数据智能平台](http://aws.lenggirl.com/public), 您可以上去观摩, 帐号密码均为`admin`, 切勿破坏, 且行且珍惜. 如果您是一名开发, 您觉得不错, 学习到了知识, 可以扫描下方二维码友情赞助. 如果你是一个电商服务公司的老板, 或者是从业者, 急需使用到该平台来进行选款, 洞察商品变化趋势, 可以来邮咨询, 我提供有偿搭建服务, 价格合理, 完全划得来.
 
 核心的爬虫包也已经拆分成库了，见[Project:Marmot(Tubo) - Golang Web Spider/Crawler/Scrapy Package | 爬虫库](https://github.com/hunterhug/marmot)。网站端也拆分成库了[Project:Rabbit(Tuzi) - Golang Enterprise Web | 简单企业网站](https://github.com/hunterhug/rabbit)
-
-如果这个产品有帮助到你,可以抛出请我吃下辣条吗?
-
-微信
-![微信](https://raw.githubusercontent.com/hunterhug/hunterhug.github.io/master/static/jpg/wei.png)
-
-支付宝
-![支付宝](https://raw.githubusercontent.com/hunterhug/hunterhug.github.io/master/static/jpg/ali.png)
-
 
 ## 4. 版本说明
 
