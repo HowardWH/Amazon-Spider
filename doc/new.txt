@@ -1,0 +1,20 @@
+ps -ef|grep usa/U* | awk '{print $2}' |xargs -i kill {}
+docker exec -d GoSpider-redis redis-cli -a GoSpider flushall
+nohup /root/gocode/src/github.com/hunterhug/AmazonBigSpider/spiders/usa/UURL -toolnew=1 -core=/root/gocode/src/github.com/hunterhug/AmazonBigSpider/public/core -root=/root/gocode/src/github.com/hunterhug/AmazonBigSpider > /dev/null 2>&1 &
+nohup /root/gocode/src/github.com/hunterhug/AmazonBigSpider/spiders/usa/UIP -toolnew=1 -core=/root/gocode/src/github.com/hunterhug/AmazonBigSpider/public/core -root=/root/gocode/src/github.com/hunterhug/AmazonBigSpider > /dev/null 2>&1 &
+nohup /root/gocode/src/github.com/hunterhug/AmazonBigSpider/spiders/usa/ULIST -toolnew=1 -core=/root/gocode/src/github.com/hunterhug/AmazonBigSpider/public/core -root=/root/gocode/src/github.com/hunterhug/AmazonBigSpider > /dev/null 2>&1 &
+nohup /root/gocode/src/github.com/hunterhug/AmazonBigSpider/spiders/usa/UASIN -toolnew=1 -core=/root/gocode/src/github.com/hunterhug/AmazonBigSpider/public/core -root=/root/gocode/src/github.com/hunterhug/AmazonBigSpider > /dev/null 2>&1 &
+
+cp doc/new/new_usa_category.sql $HOME/mydocker/mysql/conf/
+
+use smart_base
+source /etc/mysql/conf.d/new_usa_category.sql
+
+cd $GOPATH/src/github.com/hunterhug/AmazonBigSpiderWeb
+go build
+./AmazonBigSpiderWeb -s
+nohup ./AmazonBigSpiderWeb &
+mkdir file
+mkdir file/data
+mkdir file/back
+chmod 777 -R file
