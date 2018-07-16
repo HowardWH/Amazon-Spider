@@ -225,7 +225,7 @@ go get -v -u https://github.com/hunterhug/AmazonBigSpider
 
 下载不下来请手动`git clone`！！！！！
 
-PS: 已经不能`go get`了，请手动下载后参考`/link.sh`。
+PS: 已经不能`go get`了，请手动下载后参考[/link.sh](/link.sh)。
 
 ### 2. 配置爬虫
 
