@@ -661,6 +661,14 @@ chmod 777 file
 
 最后，你搭建成功了吗，成功请来个赞，或者star!!
 
+再次无耻的，问一下，可以请我吃辣条吗?一分钱图片养家，我现在是代码养家：
+
+微信
+![微信](https://raw.githubusercontent.com/hunterhug/hunterhug.github.io/master/static/jpg/wei.png)
+
+支付宝
+![支付宝](https://raw.githubusercontent.com/hunterhug/hunterhug.github.io/master/static/jpg/ali.png)
+
 # 免责声明
 
 关于版权，爬虫有风险, 本人不承担由此开源项目带来的任何责任。
