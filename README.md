@@ -1,6 +1,6 @@
 # Full Automatic Amazon Distributed crawler|spider (USA, Japan, Germany and UK)
 
-本人不承担该数据采集程序所带来的一切纠纷， 禁止任何机构及个人将此系统作为商业用途！ 本人提供收费服务！
+本人不承担该数据采集程序所带来的一切纠纷， 禁止任何机构及个人将此系统作为商业用途！ 本人提供有偿搭建服务！
 
 [![GitHub forks](https://img.shields.io/github/forks/hunterhug/AmazonBigSpider.svg?style=social&label=Forks)](https://github.com/hunterhug/AmazonBigSpider/network)
 [![GitHub stars](https://img.shields.io/github/stars/hunterhug/AmazonBigSpider.svg?style=social&label=Stars)](https://github.com/hunterhug/AmazonBigSpider/stargazers)
@@ -8,7 +8,7 @@
 [![Go Report Card](https://goreportcard.com/badge/github.com/hunterhug/AmazonBigSpider)](https://goreportcard.com/report/github.com/hunterhug/AmazonBigSpider)
 [![GitHub issues](https://img.shields.io/github/issues/hunterhug/AmazonBigSpider.svg)](https://github.com/hunterhug/AmazonBigSpider/issues)
 
-强烈说明： 定时脚本有时会遇到内存太大爆了，导致进程挂掉，现在提供一脚本进行守护：[deamon.sh](/deamon.sh)。定时器需添加`*/1 5-20 * * * /root/deamon.sh`。再次温馨提示，此分布式程序和网站需要机器的内存标配是8G内存，硬盘容量越大越好！！！
+强烈说明： 定时脚本有时会遇到内存太大爆了，导致进程挂掉，现在提供一脚本进行守护：[deamon.sh](/deamon.sh)。定时器需添加`*/1 5-20 * * * /root/deamon.sh > /dev/null 2>&1 &`。再次温馨提示，此分布式程序和网站需要机器的内存标配是8G内存，硬盘容量越大越好！！！
 
 有问题，或建议/想法/吐槽请在这里[Issues](https://github.com/hunterhug/AmazonBigSpider/issues)输出。
 
