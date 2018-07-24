@@ -1,20 +1,24 @@
 # Full Automatic Amazon Distributed crawler|spider (USA, Japan, Germany and UK)
 
+本人不承担该数据采集程序所带来的一切纠纷， 禁止任何机构及个人将此系统作为商业用途！ 本人提供收费服务！
+
 [![GitHub forks](https://img.shields.io/github/forks/hunterhug/AmazonBigSpider.svg?style=social&label=Forks)](https://github.com/hunterhug/AmazonBigSpider/network)
 [![GitHub stars](https://img.shields.io/github/stars/hunterhug/AmazonBigSpider.svg?style=social&label=Stars)](https://github.com/hunterhug/AmazonBigSpider/stargazers)
 [![GitHub last commit](https://img.shields.io/github/last-commit/hunterhug/AmazonBigSpider.svg)](https://github.com/hunterhug/AmazonBigSpider)
 [![Go Report Card](https://goreportcard.com/badge/github.com/hunterhug/AmazonBigSpider)](https://goreportcard.com/report/github.com/hunterhug/AmazonBigSpider)
 [![GitHub issues](https://img.shields.io/github/issues/hunterhug/AmazonBigSpider.svg)](https://github.com/hunterhug/AmazonBigSpider/issues)
 
-强烈说明： 定时脚本有时会遇到内存太大爆了，导致进程挂掉，现在提供一脚本进行守护：[deamon.sh](/deamon.sh).再次温馨提示，此分布式程序和网站需要机器的内存标配是8G内存，硬盘容量越大越好！！！
+强烈说明： 定时脚本有时会遇到内存太大爆了，导致进程挂掉，现在提供一脚本进行守护：[deamon.sh](/deamon.sh)。定时器需添加`*/1 5-20 * * * /root/deamon.sh`。再次温馨提示，此分布式程序和网站需要机器的内存标配是8G内存，硬盘容量越大越好！！！
+
+有问题，或建议/想法/吐槽请在这里[Issues](https://github.com/hunterhug/AmazonBigSpider/issues)输出。
 
 ## 一. 介绍
+
+此框架搭建成功，电商小团队（数据需求不超过百万），总体硬件花费大约机器一年1500元，代理IP一年500元，花费不会超出2000元就能拥有一个选款产品，秒杀市场上所有付费产品，而且安全可靠，数据全托管在自己手里。PS：前提你需要一个技术人员将此开源框架成功搭起来，一个技术人员的花费估计几千大洋。
 
 1. 2018.06-now| 全新出发，代码全部开源，并且采集端和网站端全部合并在一个仓库。
 2. 2017.10-2018.05| 此项目为亚马逊电商带来了过多压力，~~开始局部闭源~~，现在Github上的版本是v2.0，~~闭源版本到达3.0，新的功能和修的新BUG将不再提交Github~~ 
 3. 2016.10-2016.12| 第一版Python采集端见:[这个仓库](https://github.com/hunterhug/AmazonPython)，老说明戳[这里](doc/old-readme.md)。
-
-本人不承担该数据采集程序所带来的一切纠纷， 禁止任何机构及个人将此系统作为商业用途！ 本人提供收费服务！
 
 平台具体使用请查看[亚马逊大数据智能选款平台使用手册v1.2.pdf](https://github.com/hunterhug/AmazonBigSpider/raw/master/doc/%E4%BA%9A%E9%A9%AC%E9%80%8A%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%99%BA%E8%83%BD%E9%80%89%E6%AC%BE%E5%B9%B3%E5%8F%B0%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8Cv1.2.pdf)。 
 
@@ -657,7 +661,7 @@ chmod 777 file
 
 记录一次实例安装: 见[阿里云安装该产品](/doc/ubuntu.md)。
 
-看到这里，说明你很有耐心，再次温馨提示，数据要多，要快，软件要稳定，务必加大内存，没有8G内存，不要以程序挂掉来咨询我，那一定是内存不够！！！8G内存是基配要求！！！！！！！！
+看到这里，说明你很有耐心，再次温馨提示，数据要多，要快，软件要稳定，务必加大内存，没有8G内存，不要以程序挂掉来咨询我，那一定是内存不够！！！8G内存是标配要求！！！！！！！！
 
 最后，你搭建成功了吗，成功请来个赞，或者star!!
 
