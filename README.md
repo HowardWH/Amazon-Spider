@@ -6,6 +6,8 @@
 [![Go Report Card](https://goreportcard.com/badge/github.com/hunterhug/AmazonBigSpider)](https://goreportcard.com/report/github.com/hunterhug/AmazonBigSpider)
 [![GitHub issues](https://img.shields.io/github/issues/hunterhug/AmazonBigSpider.svg)](https://github.com/hunterhug/AmazonBigSpider/issues)
 
+强烈说明： 定时脚本有时会遇到内存太大爆了，导致进程挂掉，现在提供一脚本进行守护：[deamon.sh](/deamon.sh).再次温馨提示，此分布式程序和网站需要机器的内存标配是8G内存，硬盘容量越大越好！！！
+
 ## 一. 介绍
 
 1. 2018.06-now| 全新出发，代码全部开源，并且采集端和网站端全部合并在一个仓库。
@@ -41,7 +43,7 @@
 分布式，高并发，跨平台，多站点，多种自定义配置，极强的容错能力是这个爬虫的特点。机器数量和IP代理足够情况下，每天每个站点可满足抓取几百万的商品数据。
 
 
-## 2. 最新说明
+### 2. 最新说明
 
 鉴于本人精力有限, 无暇多开发新功能, 有更多需求可来邮. 目前搭了一套[亚马逊电子商务大数据智能平台](http://aws.lenggirl.com/public), 您可以上去观摩, 帐号密码均为`admin`, 切勿破坏, 且行且珍惜. 如果您是一名开发, 您觉得不错, 学习到了知识, 可以扫描下方二维码友情赞助. 如果你是一个电商服务公司的老板, 或者是从业者, 急需使用到该平台来进行选款, 洞察商品变化趋势, 可以来邮咨询, 我提供有偿搭建服务, 价格合理, 完全划得来.
 
@@ -55,7 +57,7 @@
 支付宝
 ![支付宝](https://raw.githubusercontent.com/hunterhug/hunterhug.github.io/master/static/jpg/ali.png)
 
-## 3. 版本说明
+### 3. 版本说明
 
 v3.0
 
@@ -72,7 +74,7 @@ v2.0
 2. 修补一些BUG
 3. 美国站类目URL已经更新: /doc/sql/days/usa_category20171026.sql(数据库导入必须是最新的)
 
-## 4. 可视化端
+### 4. 可视化端
 
 类目，你可以自行更改抓取页数，是否抓取。
 
@@ -95,7 +97,7 @@ v2.0
 ![](backend/doc/img/excel.png)
 
 
-# 5. 架构图
+### 5. 架构图
 
 老的：
 
@@ -107,7 +109,9 @@ v2.0
 ![](backend/doc/img/2.jpg)
 
 
-# 6. 欢迎咨询
+### 6. 欢迎咨询
+
+（务必发红包引起我注意，否则太忙无暇顾及！！！）
 
 此项目可以持续优化成功一个更好的平台, 因为国内目前还没有像淘宝数据参谋一样的亚马逊数据参谋. 由于高并发百万级每天导致的数据抓取速度问题, 和数据获取后的清洗和挖掘问题, 我们可以在以下方面做得更好.
 
@@ -223,9 +227,7 @@ skip-name-resolve
 go get -v -u https://github.com/hunterhug/AmazonBigSpider
 ```
 
-下载不下来请手动`git clone`！！！！！
-
-PS: 已经不能`go get`了，请手动下载后参考[/link.sh](/link.sh)。
+下载不下来请手动`git clone`！！！！！ PS: 已经不能`go get`了，请手动下载后参考[/link.sh](/link.sh)。强烈建议手动！！！
 
 ### 2. 配置爬虫
 
@@ -598,7 +600,7 @@ server-id=2
 
 ## 三. 网站端安装
 
-编译程序：
+进入网站端代码所在位置，进行编译程序：
 
 ```
 go build
@@ -653,8 +655,11 @@ chmod 777 file
 
 ![](backend/doc/img/login.png)
 
-
 记录一次实例安装: 见[阿里云安装该产品](/doc/ubuntu.md)。
+
+看到这里，说明你很有耐心，再次温馨提示，数据要多，要快，软件要稳定，务必加大内存，没有8G内存，不要以程序挂掉来咨询我，那一定是内存不够！！！8G内存是基配要求！！！！！！！！
+
+最后，你搭建成功了吗，成功请来个赞，或者star!!
 
 # 免责声明
 
