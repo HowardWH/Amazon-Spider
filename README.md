@@ -1,15 +1,12 @@
 # Full Automatic Amazon Distributed crawler|spider (USA, Japan, Germany and UK)
 
-本人不承担该数据采集程序所带来的一切纠纷， 禁止任何机构及个人将此系统作为商业用途！ 本人提供有偿搭建服务！
-
 [![GitHub forks](https://img.shields.io/github/forks/hunterhug/AmazonBigSpider.svg?style=social&label=Forks)](https://github.com/hunterhug/AmazonBigSpider/network)
 [![GitHub stars](https://img.shields.io/github/stars/hunterhug/AmazonBigSpider.svg?style=social&label=Stars)](https://github.com/hunterhug/AmazonBigSpider/stargazers)
 [![GitHub last commit](https://img.shields.io/github/last-commit/hunterhug/AmazonBigSpider.svg)](https://github.com/hunterhug/AmazonBigSpider)
 [![Go Report Card](https://goreportcard.com/badge/github.com/hunterhug/AmazonBigSpider)](https://goreportcard.com/report/github.com/hunterhug/AmazonBigSpider)
 [![GitHub issues](https://img.shields.io/github/issues/hunterhug/AmazonBigSpider.svg)](https://github.com/hunterhug/AmazonBigSpider/issues)
 
-强烈说明： 定时脚本有时会遇到内存太大爆了，导致进程挂掉，现在提供一脚本进行守护：[deamon.sh](/deamon.sh)。定时器需添加`*/1 5-20 * * * /root/deamon.sh > /dev/null 2>&1 &`。再次温馨提示，此分布式程序和网站需要机器的内存标配是8G内存，硬盘容量越大越好！！！
-
+本人不承担该数据采集程序所带来的一切纠纷， 禁止任何机构及个人将此系统作为商业用途！ 本人提供有偿搭建服务！
 有问题，或建议/想法/吐槽请在这里[Issues](https://github.com/hunterhug/AmazonBigSpider/issues)输出。
 
 ---
@@ -18,9 +15,28 @@
 
 1. 20180721日:亚马逊美国，德国，英国列表页规则变动，导致解析不到数据。已于20180724修复：新的修复属于补丁。补丁是开源作者的辛苦付出。所以补丁在三个月后才释出：补丁名称：20180724补丁.rar
 
+---
+
+版本日志：
+
+v3.0
+
+1. 添加各种新功能
+2. 改BUG
+
+v2.3
+
+1. 解决许多BUG
+
+v2.0
+
+1. 增加安装详细说明
+2. 修补一些BUG
+3. 美国站类目URL已经更新: /doc/sql/days/usa_category20171026.sql(数据库导入必须是最新的)
+
 ## 一. 介绍
 
-此框架搭建成功，电商小团队（数据需求不超过百万），总体硬件花费大约机器一年1500元，代理IP一年500元，花费不会超出2000元就能拥有一个选款产品，秒杀市场上所有付费产品，而且安全可靠，数据全托管在自己手里。PS：前提你需要一个技术人员将此开源框架成功搭起来，一个技术人员的花费估计几千大洋。
+此框架搭建成功，电商小团队（数据需求不超过百万），总体硬件花费大约机器一年1500元，代理IP一年500元，花费不会超出2000元就能拥有一个选款产品，秒杀市场上所有付费产品，而且安全可靠，数据全托管在自己手里。
 
 1. 2018.06-now| 全新出发，代码全部开源，并且采集端和网站端全部合并在一个仓库。
 2. 2017.10-2018.05| 此项目为亚马逊电商带来了过多压力，~~开始局部闭源~~，现在Github上的版本是v2.0，~~闭源版本到达3.0，新的功能和修的新BUG将不再提交Github~~ 
@@ -52,38 +68,15 @@
 
 分布式，高并发，跨平台，多站点，多种自定义配置，极强的容错能力是这个爬虫的特点。机器数量和IP代理足够情况下，每天每个站点可满足抓取几百万的商品数据。
 
-### 2. 最新说明
+此项目可以持续优化成功一个更好的平台, 因为国内目前还没有像淘宝数据参谋一样的亚马逊数据参谋. 由于高并发百万级每天导致的数据抓取速度问题, 和数据获取后的清洗和挖掘问题, 我们可以在以下方面做得更好.
 
-鉴于本人精力有限, 无暇多开发新功能, 有更多需求可来邮. 目前搭了一套[亚马逊电子商务大数据智能平台](http://aws.lenggirl.com/public), 您可以上去观摩, 帐号密码均为`admin`, 切勿破坏, 且行且珍惜. 如果您是一名开发, 您觉得不错, 学习到了知识, 可以扫描下方二维码友情赞助. 如果你是一个电商服务公司的老板, 或者是从业者, 急需使用到该平台来进行选款, 洞察商品变化趋势, 可以来邮咨询, 我提供有偿搭建服务, 价格合理, 完全划得来.
+1. 首先数据抓取速度保证和爬虫部署问题, 可以采用`Docker`自动构建, 构建`kubernetes`集群进行`deployments`部署, 自动跨容和缩容爬虫服务, 分布式爬虫不再需要手工上去跑任务.
+2. 其次数据保存在`MYSQL`产生的分表问题, 因为`MYSQL`是非分布式的集中式关系型数据库, 大量数据导致数据查找困难, 多表间数据`union`和`join`困难, 所以可以采用`ElasticSearch`来替换`MYSQL`, 著名的`JAVA Nutch搜索引擎框架`使用的就是`ES`.
+3. 最后, 关于数据获取后的清洗和挖掘问题, 是属于离线操作问题, 保存在`ES`的数据本身支持各种搜索,`ES`的文本搜索能力超出你的想象, 一般需求可以满足, 不能满足的需求则要从`ES`抽取数据, 构建不同主题的数据仓库进行定制化挖掘. 此部分, 需要开发另外的项目.
+4. 配套的`UI`网站端可以有更好的用户体验, 目前基本可以满足选款的需求, 商品的各种数据优美的显示出来.
 
-核心的爬虫包也已经拆分成库了，见[Project:Marmot(Tubo) - Golang Web Spider/Crawler/Scrapy Package | 爬虫库](https://github.com/hunterhug/marmot)。网站端也拆分成库了[Project:Rabbit(Tuzi) - Golang Enterprise Web | 简单企业网站](https://github.com/hunterhug/rabbit)
 
-如果这个产品有帮助到你,可以抛出请我吃下辣条吗?
-
-微信
-![微信](https://raw.githubusercontent.com/hunterhug/hunterhug.github.io/master/static/jpg/wei.png)
-
-支付宝
-![支付宝](https://raw.githubusercontent.com/hunterhug/hunterhug.github.io/master/static/jpg/ali.png)
-
-### 3. 版本说明
-
-v3.0
-
-1. 添加各种新功能
-2. 改BUG
-
-v2.3
-
-1. 解决许多BUG
-
-v2.0
-
-1. 增加安装详细说明
-2. 修补一些BUG
-3. 美国站类目URL已经更新: /doc/sql/days/usa_category20171026.sql(数据库导入必须是最新的)
-
-### 4. 可视化端
+### 2. 简单一瞥
 
 类目，你可以自行更改抓取页数，是否抓取。
 
@@ -106,7 +99,7 @@ v2.0
 ![](backend/doc/img/excel.png)
 
 
-### 5. 架构图
+### 3. 软件架构
 
 老的：
 
@@ -116,18 +109,6 @@ v2.0
 
 ![](backend/doc/img/1.jpg)
 ![](backend/doc/img/2.jpg)
-
-
-### 6. 欢迎咨询
-
-（务必发红包引起我注意，否则太忙无暇顾及！！！）
-
-此项目可以持续优化成功一个更好的平台, 因为国内目前还没有像淘宝数据参谋一样的亚马逊数据参谋. 由于高并发百万级每天导致的数据抓取速度问题, 和数据获取后的清洗和挖掘问题, 我们可以在以下方面做得更好.
-
-1. 首先数据抓取速度保证和爬虫部署问题, 可以采用`Docker`自动构建, 构建`kubernetes`集群进行`deployments`部署, 自动跨容和缩容爬虫服务, 分布式爬虫不再需要手工上去跑任务.
-2. 其次数据保存在`MYSQL`产生的分表问题, 因为`MYSQL`是非分布式的集中式关系型数据库, 大量数据导致数据查找困难, 多表间数据`union`和`join`困难, 所以可以采用`ElasticSearch`来替换`MYSQL`, 著名的`JAVA Nutch搜索引擎框架`使用的就是`ES`.
-3. 最后, 关于数据获取后的清洗和挖掘问题, 是属于离线操作问题, 保存在`ES`的数据本身支持各种搜索,`ES`的文本搜索能力超出你的想象, 一般需求可以满足, 不能满足的需求则要从`ES`抽取数据, 构建不同主题的数据仓库进行定制化挖掘. 此部分, 需要开发另外的项目.
-4. 配套的`UI`网站端可以有更好的用户体验, 目前基本可以满足选款的需求, 商品的各种数据优美的显示出来.
 
 ~~闭源版本增加若干新功能~~，并更新类目，去掉图书，CD和APP，类目大体如下。
 
@@ -166,8 +147,48 @@ v2.0
 +----------------------------+-----------------+
 ```
 
+### 4. 友情支持
+
+鉴于本人精力有限, 无暇多开发新功能, 有更多需求可来邮. 目前搭了一套[亚马逊电子商务大数据智能平台](http://aws.lenggirl.com/public), 您可以上去观摩, 帐号密码均为`admin`, 切勿破坏, 且行且珍惜. 如果您是一名开发, 您觉得不错, 学习到了知识, 可以扫描下方二维码友情赞助. 如果你是一个电商服务公司的老板, 或者是从业者, 急需使用到该平台来进行选款, 洞察商品变化趋势, 可以来邮咨询, 我提供有偿搭建服务, 价格合理, 完全划得来.
+
+如果这个产品有帮助到你,可以抛出请我吃下辣条吗?
+
+微信
+![微信](https://raw.githubusercontent.com/hunterhug/hunterhug.github.io/master/static/jpg/wei.png)
+
+支付宝
+![支付宝](https://raw.githubusercontent.com/hunterhug/hunterhug.github.io/master/static/jpg/ali.png)
+
+### 5. 服务相关
+
+本产品遵循`署名-非商业性使用-禁止演绎 4.0 国际`。您可用于教育，学习，但不可用于商业盈利。免费用户不享受及时的补丁修复。商业用途请购买授权，授权一年2000RMB。
+
+现提供咨询搭建服务：
+
+一．搭建和运维服务
+
+提供全套安装和运维服务（目前四个站点）。
+
+关于硬件，您需提供云服务机器IP和账号密码，购买的代理IP地址。如果你想托管，我可以代为购买。云服务因配置不同费用稍许不同，阿里云最便宜机器300RMB/年
+
+关于软件，赠送品为：不时的补丁赠送（亚马逊经常改页面规则，享受比开源免费用户及时的修复）
+
+热款ASIN采集量在30万件商品以内2000 RMB一个站安装费，采集量30-60万件商品5000 RMB一个站，60万-150万件商品8000 RMB，150万以上需按月付运维费并详谈。费用递增是由于采集量加大，运维难度变大，分布式配置越发复杂。运维费用每次500RMB。按月付运维费请详谈。
+
+一般1-6个人小团队，类目勾选不多，一般在30万ASIN以内，足够选款，故大概需要人工成本2000 RMB。
+
+二．咨询(可联系WX：hunterhug。QQ：459527502)：
+
+应答模式咨询：简称面向红包聊天，红包金额大于RMB元则反馈，一个问题一个红包，就问题可选择忽视。
+
+专业模式咨询：1小时内200 RMB，1-2小时内500 RMB，大于2小时不接受，先付费后咨询。
+
+该选款产品包含采集端和网站端，已经应用在十家亚马逊团队，是助力跨境亚马逊电商的好帮手！！！
+
+
 ## 二. 采集端安装
 
+强烈说明： 定时脚本有时会遇到内存太大爆了，导致进程挂掉，现在提供一脚本进行守护：[deamon.sh](/deamon.sh)。定时器需添加`*/1 5-20 * * * /root/deamon.sh > /dev/null 2>&1 &`。再次温馨提示，此分布式程序和网站需要机器的内存标配是8G内存，硬盘容量越大越好！！！
 
 ### 0. 文件目录
 
